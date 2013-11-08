@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\Player.cs" />
     <Compile Include="Source\Program.cs" />
     <Compile Include="Source\World.cs" />
   </ItemGroup>
