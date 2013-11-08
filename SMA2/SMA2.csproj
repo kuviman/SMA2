@@ -52,6 +52,19 @@
   <ItemGroup>
     <Compile Include="Source\Program.cs" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Data\Aim.png" />
+    <Content Include="Data\Asteroid.png" />
+    <Content Include="Data\Back.png" />
+    <Content Include="Data\Body.png" />
+    <Content Include="Data\Cloud.png" />
+    <Content Include="Data\Explosion.png" />
+    <Content Include="Data\Gun.png" />
+    <Content Include="Data\Head.png" />
+    <Content Include="Data\Logo.png" />
+    <Content Include="Data\Player.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
