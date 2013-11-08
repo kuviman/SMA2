@@ -1,0 +1,1379 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VPE</name>
+    </assembly>
+    <members>
+        <member name="T:VitPro.Engine.Shaders">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.Shaders.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.Shaders.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.Shaders._Vertex">
+             <summary>
+               Looks up a localized string similar to #version 150
+            
+            attribute vec4 position;
+            
+            uniform vec4 color;
+            uniform mat4x4 modelMatrix, projectionMatrix;
+            
+            varying vec2 modelPos, worldPos, screenPos;
+            
+            void main() {
+            	vec4 wp = modelMatrix * position;
+                gl_Position = projectionMatrix * wp;
+            
+            	modelPos = vec2(position.x, position.y);
+            	worldPos = vec2(wp.x, wp.y);
+            	screenPos = vec2(gl_Position.x, gl_Position.y);
+            }.
+             </summary>
+        </member>
+        <member name="P:VitPro.Engine.Shaders.Circle">
+             <summary>
+               Looks up a localized string similar to #version 150
+            
+            uniform vec4 color;
+            
+            varying vec2 modelPos;
+            
+            void main() {
+            	if (distance(modelPos, vec2(0.5, 0.5)) &gt; 0.5)
+            		discard;
+                gl_FragColor = color;
+            }
+            .
+             </summary>
+        </member>
+        <member name="P:VitPro.Engine.Shaders.Color">
+             <summary>
+               Looks up a localized string similar to #version 150
+            
+            uniform vec4 color;
+            
+            void main() {
+                gl_FragColor = color;
+            }
+            .
+             </summary>
+        </member>
+        <member name="P:VitPro.Engine.Shaders.Texture">
+             <summary>
+               Looks up a localized string similar to #version 150
+            
+            uniform vec4 color;
+            uniform sampler2D texture;
+            
+            uniform vec2 origin, size;
+            
+            varying vec2 quadPos;
+            
+            void main() {
+                gl_FragColor = texture2D(texture, origin + quadPos * size) * color;
+            }
+            .
+             </summary>
+        </member>
+        <member name="T:VitPro.Engine.App">
+            <summary>
+            Provides core appplication methods.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.App.PushState(VitPro.Engine.IState)">
+            <summary>
+            Push a state into state stack, after it closes, current will continue.
+            </summary>
+            <param name="state">State to push.</param>
+        </member>
+        <member name="M:VitPro.Engine.App.Kill">
+            <summary>
+            Kill the application.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.App.Run(VitPro.Engine.IState,VitPro.Engine.IState[])">
+            <summary>
+            Start the application.
+            </summary>
+            <param name="startState">Starting state.</param>
+            <param name="states">State stack remains.</param>
+        </member>
+        <member name="P:VitPro.Engine.App.Time">
+            <summary>
+            Gets time elapsed since program begun.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.App.OnClose">
+            <summary>
+            Gets or sets close event handler.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.App.AutoQuit">
+            <summary>
+            Gets or sets whether application closes automatically when user closes the window.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.App.CurrentState">
+            <summary>
+            Gets current state.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.App.Closed">
+            <summary>
+            Gets whether application is done.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.App.NextState">
+            <summary>
+            Sets the next state.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.App.Title">
+            <summary>
+            Gets or sets window title.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.App.Width">
+            <summary>
+            Gets window width.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.App.Height">
+            <summary>
+            Gets window height.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.App.Aspect">
+            <summary>
+            Gets the window aspect ratio.
+            </summary>
+        </member>
+        <member name="T:VitPro.Engine.EngineError">
+            <summary>
+            Engine error exception
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.Draw.BeginTexture(VitPro.Engine.Texture)">
+            <summary>
+            Begin rendering to the texture.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.Draw.EndTexture">
+            <summary>
+            Finish rendering to the texture.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.Draw.Align(System.Double,System.Double)">
+            <summary>
+            Set current model's center points.
+            </summary>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+        </member>
+        <member name="M:VitPro.Engine.Draw.Align(VitPro.Vec2)">
+            <summary>
+            Set current model's center points.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.Draw.Translate(System.Double,System.Double)">
+            <summary>
+            Translate current model by the given vector.
+            </summary>
+            <param name="x">Translation along x axis.</param>
+            <param name="y">Translation along y axis.</param>
+        </member>
+        <member name="M:VitPro.Engine.Draw.Translate(VitPro.Vec2)">
+            <summary>
+            Translate current model by the given vector.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.Draw.Rotate(System.Double)">
+            <summary>
+            Rotate current model by the given angle.
+            </summary>
+            <param name="a">Rotation angle in radians.</param>
+        </member>
+        <member name="M:VitPro.Engine.Draw.Scale(System.Double,System.Double)">
+            <summary>
+            Scale current model.
+            </summary>
+            <param name="kx">Scale along x axis.</param>
+            <param name="ky">Scale along y axis.</param>
+        </member>
+        <member name="M:VitPro.Engine.Draw.Scale(System.Double)">
+            <summary>
+            Scale current model.
+            </summary>
+            <param name="k"></param>
+        </member>
+        <member name="M:VitPro.Engine.Draw.Color(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Change color of the current model (multiply).
+            </summary>
+            <param name="r">Red component.</param>
+            <param name="g">Green component.</param>
+            <param name="b">Blue component.</param>
+            <param name="a">Alpha component.</param>
+        </member>
+        <member name="M:VitPro.Engine.Draw.Color(VitPro.Color)">
+            <summary>
+            Change color of the current model (multiply).
+            </summary>
+        </member>
+        <member name="T:VitPro.Engine.Shader">
+            <summary>
+            GLSL fragment shader.
+            </summary>
+        </member>
+        <member name="T:VitPro.Engine.IRenderable">
+            <summary>
+            Interface representing a renderable object.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.IRenderable.Render">
+            <summary>
+            Render the object.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.Shader.SetInt(System.String,System.Int32)">
+            <summary>
+            Set a uniform int variable.
+            </summary>
+            <param name="name">Variable name.</param>
+        </member>
+        <member name="M:VitPro.Engine.Shader.SetReal(System.String,System.Double)">
+            <summary>
+            Set a uniform float variable.
+            </summary>
+            <param name="name">Variable name.</param>
+        </member>
+        <member name="M:VitPro.Engine.Shader.SetTexture(System.String,VitPro.Engine.Texture)">
+            <summary>
+            Set a uniform texture variable.
+            </summary>
+            <param name="name">Variable name.</param>
+            <param name="texture">Texture value.</param>
+        </member>
+        <member name="M:VitPro.Engine.Shader.SetVec2(System.String,System.Double,System.Double)">
+            <summary>
+            Set a uniform vec2 variable.
+            </summary>
+            <param name="name">Variable name.</param>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+        </member>
+        <member name="M:VitPro.Engine.Shader.SetVec2(System.String,VitPro.Vec2)">
+            <summary>
+            Set a uniform vec2 variable.
+            </summary>
+            <param name="name">Variable name.</param>
+            <param name="v">Vec2 value.</param>
+        </member>
+        <member name="M:VitPro.Engine.Shader.SetVec4(System.String,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Set a uniform vec4 variable.
+            </summary>
+            <param name="name">Variable name.</param>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+            <param name="z">Z coordinate.</param>
+            <param name="w">W coordinate.</param>
+        </member>
+        <member name="M:VitPro.Engine.Shader.SetColor(System.String,VitPro.Color)">
+            <summary>
+            Set a uniform color(vec4) variable.
+            </summary>
+            <param name="name">Variable name.</param>
+            <param name="color">Color value.</param>
+        </member>
+        <member name="M:VitPro.Engine.Shader.SetColor(System.String,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Set a uniform color(vec4) variable.
+            </summary>
+            <param name="name">Variable name.</param>
+            <param name="r">Red component.</param>
+            <param name="g">Green component.</param>
+            <param name="b">Blue component.</param>
+            <param name="a">Alpha component.</param>
+        </member>
+        <member name="M:VitPro.Engine.Shader.#ctor(System.String,System.String[])">
+            <param name="program">Source code.</param>
+            <param name="adds">Additional source files.</param>
+        </member>
+        <member name="M:VitPro.Engine.Shader.Render">
+            <summary>
+            Renders a quad using the shader.
+            </summary>
+        </member>
+        <member name="T:VitPro.Engine.Texture">
+            <summary>
+            Represents a texture image.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.Texture.Save(System.String)">
+            <summary>
+            Save the texture to a file.
+            </summary>
+            <param name="path">File to save.</param>
+        </member>
+        <member name="M:VitPro.Engine.Texture.Render">
+            <summary>
+            Render a quad with the texture.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.Texture.Width">
+            <summary>
+            Gets width of the texture.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.Texture.Height">
+            <summary>
+            Gets height of the texture.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.Texture.Smooth">
+            <summary>
+            Gets or sets texture's smooth parameter.
+            </summary>
+        </member>
+        <member name="T:VitPro.Engine.IUpdateable">
+            <summary>
+            Interface representing an updateable object.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.IUpdateable.Update(System.Double)">
+            <summary>
+            Update the object.
+            </summary>
+            <param name="dt">Time elapsed since last update.</param>
+        </member>
+        <member name="M:VitPro.Engine.IState.Close">
+            <summary>
+            Close the state.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.IState.KeyDown(VitPro.Engine.Key)">
+            <summary>
+            Called when a key is being pressed.
+            </summary>
+            <param name="key">Pressed key.</param>
+        </member>
+        <member name="M:VitPro.Engine.IState.KeyUp(VitPro.Engine.Key)">
+            <summary>
+            Called when a key is being released.
+            </summary>
+            <param name="key">Released key.</param>
+        </member>
+        <member name="M:VitPro.Engine.IState.MouseDown(VitPro.Engine.MouseButton,VitPro.Vec2)">
+            <summary>
+            Called when a mouse button is being pressed.
+            </summary>
+            <param name="button">Pressed button.</param>
+            <param name="pos">Event position.</param>
+        </member>
+        <member name="M:VitPro.Engine.IState.MouseUp(VitPro.Engine.MouseButton,VitPro.Vec2)">
+            <summary>
+            Called when a mouse button is being released.
+            </summary>
+            <param name="button">Pressed button.</param>
+            <param name="pos">Event position.</param>
+        </member>
+        <member name="M:VitPro.Engine.IState.MouseMove(VitPro.Vec2)">
+            <summary>
+            Called when mouse is being moved.
+            </summary>
+            <param name="pos">Event position.</param>
+        </member>
+        <member name="P:VitPro.Engine.IState.Closed">
+            <summary>
+            Gets whether state has been closed.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.State.Close">
+            <summary>
+            Close the state.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.State.Update(System.Double)">
+            <summary>
+            Update the state.
+            </summary>
+            <param name="dt">Time since last update.</param>
+        </member>
+        <member name="M:VitPro.Engine.State.Render">
+            <summary>
+            Render the state.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.State.KeyDown(VitPro.Engine.Key)">
+            <summary>
+            Called when a key is being pressed.
+            </summary>
+            <param name="key">Pressed key.</param>
+        </member>
+        <member name="M:VitPro.Engine.State.KeyUp(VitPro.Engine.Key)">
+            <summary>
+            Called when a key is being released.
+            </summary>
+            <param name="key">Released key.</param>
+        </member>
+        <member name="M:VitPro.Engine.State.MouseDown(VitPro.Engine.MouseButton,VitPro.Vec2)">
+            <summary>
+            Called when a mouse button is being pressed.
+            </summary>
+            <param name="button">Pressed button.</param>
+            <param name="pos">Event position.</param>
+        </member>
+        <member name="M:VitPro.Engine.State.MouseUp(VitPro.Engine.MouseButton,VitPro.Vec2)">
+            <summary>
+            Called when a mouse button is being released.
+            </summary>
+            <param name="button">Pressed button.</param>
+            <param name="pos">Event position.</param>
+        </member>
+        <member name="M:VitPro.Engine.State.MouseMove(VitPro.Vec2)">
+            <summary>
+            Called when mouse is being moved.
+            </summary>
+            <param name="pos">Event position.</param>
+        </member>
+        <member name="P:VitPro.Engine.State.Closed">
+            <summary>
+            Gets whether state has been closed.
+            </summary>
+        </member>
+        <member name="T:VitPro.Engine.Key">
+            <summary>
+            The available keyboard keys.
+            </summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Unknown">
+            <summary>A key outside the known keys.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.ShiftLeft">
+            <summary>The left shift key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.LShift">
+            <summary>The left shift key (equivalent to ShiftLeft).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.ShiftRight">
+            <summary>The right shift key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.RShift">
+            <summary>The right shift key (equivalent to ShiftRight).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.ControlLeft">
+            <summary>The left control key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.LControl">
+            <summary>The left control key (equivalent to ControlLeft).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.ControlRight">
+            <summary>The right control key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.RControl">
+            <summary>The right control key (equivalent to ControlRight).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.AltLeft">
+            <summary>The left alt key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.LAlt">
+            <summary>The left alt key (equivalent to AltLeft.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.AltRight">
+            <summary>The right alt key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.RAlt">
+            <summary>The right alt key (equivalent to AltRight).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.WinLeft">
+            <summary>The left win key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.LWin">
+            <summary>The left win key (equivalent to WinLeft).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.WinRight">
+            <summary>The right win key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.RWin">
+            <summary>The right win key (equivalent to WinRight).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Menu">
+            <summary>The menu key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F1">
+            <summary>The F1 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F2">
+            <summary>The F2 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F3">
+            <summary>The F3 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F4">
+            <summary>The F4 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F5">
+            <summary>The F5 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F6">
+            <summary>The F6 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F7">
+            <summary>The F7 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F8">
+            <summary>The F8 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F9">
+            <summary>The F9 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F10">
+            <summary>The F10 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F11">
+            <summary>The F11 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F12">
+            <summary>The F12 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F13">
+            <summary>The F13 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F14">
+            <summary>The F14 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F15">
+            <summary>The F15 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F16">
+            <summary>The F16 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F17">
+            <summary>The F17 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F18">
+            <summary>The F18 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F19">
+            <summary>The F19 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F20">
+            <summary>The F20 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F21">
+            <summary>The F21 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F22">
+            <summary>The F22 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F23">
+            <summary>The F23 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F24">
+            <summary>The F24 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F25">
+            <summary>The F25 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F26">
+            <summary>The F26 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F27">
+            <summary>The F27 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F28">
+            <summary>The F28 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F29">
+            <summary>The F29 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F30">
+            <summary>The F30 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F31">
+            <summary>The F31 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F32">
+            <summary>The F32 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F33">
+            <summary>The F33 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F34">
+            <summary>The F34 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F35">
+            <summary>The F35 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Up">
+            <summary>The up arrow key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Down">
+            <summary>The down arrow key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Left">
+            <summary>The left arrow key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Right">
+            <summary>The right arrow key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Enter">
+            <summary>The enter key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Escape">
+            <summary>The escape key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Space">
+            <summary>The space key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Tab">
+            <summary>The tab key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.BackSpace">
+            <summary>The backspace key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Back">
+            <summary>The backspace key (equivalent to BackSpace).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Insert">
+            <summary>The insert key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Delete">
+            <summary>The delete key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.PageUp">
+            <summary>The page up key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.PageDown">
+            <summary>The page down key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Home">
+            <summary>The home key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.End">
+            <summary>The end key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.CapsLock">
+            <summary>The caps lock key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.ScrollLock">
+            <summary>The scroll lock key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.PrintScreen">
+            <summary>The print screen key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Pause">
+            <summary>The pause key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.NumLock">
+            <summary>The num lock key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Clear">
+            <summary>The clear key (Keypad5 with NumLock disabled, on typical keyboards).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Sleep">
+            <summary>The sleep key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Keypad0">
+            <summary>The keypad 0 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Keypad1">
+            <summary>The keypad 1 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Keypad2">
+            <summary>The keypad 2 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Keypad3">
+            <summary>The keypad 3 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Keypad4">
+            <summary>The keypad 4 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Keypad5">
+            <summary>The keypad 5 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Keypad6">
+            <summary>The keypad 6 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Keypad7">
+            <summary>The keypad 7 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Keypad8">
+            <summary>The keypad 8 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Keypad9">
+            <summary>The keypad 9 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.KeypadDivide">
+            <summary>The keypad divide key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.KeypadMultiply">
+            <summary>The keypad multiply key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.KeypadSubtract">
+            <summary>The keypad subtract key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.KeypadMinus">
+            <summary>The keypad minus key (equivalent to KeypadSubtract).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.KeypadAdd">
+            <summary>The keypad add key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.KeypadPlus">
+            <summary>The keypad plus key (equivalent to KeypadAdd).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.KeypadDecimal">
+            <summary>The keypad decimal key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.KeypadEnter">
+            <summary>The keypad enter key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.A">
+            <summary>The A key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.B">
+            <summary>The B key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.C">
+            <summary>The C key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.D">
+            <summary>The D key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.E">
+            <summary>The E key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.F">
+            <summary>The F key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.G">
+            <summary>The G key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.H">
+            <summary>The H key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.I">
+            <summary>The I key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.J">
+            <summary>The J key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.K">
+            <summary>The K key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.L">
+            <summary>The L key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.M">
+            <summary>The M key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.N">
+            <summary>The N key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.O">
+            <summary>The O key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.P">
+            <summary>The P key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Q">
+            <summary>The Q key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.R">
+            <summary>The R key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.S">
+            <summary>The S key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.T">
+            <summary>The T key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.U">
+            <summary>The U key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.V">
+            <summary>The V key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.W">
+            <summary>The W key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.X">
+            <summary>The X key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Y">
+            <summary>The Y key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Z">
+            <summary>The Z key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Number0">
+            <summary>The number 0 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Number1">
+            <summary>The number 1 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Number2">
+            <summary>The number 2 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Number3">
+            <summary>The number 3 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Number4">
+            <summary>The number 4 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Number5">
+            <summary>The number 5 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Number6">
+            <summary>The number 6 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Number7">
+            <summary>The number 7 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Number8">
+            <summary>The number 8 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Number9">
+            <summary>The number 9 key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Tilde">
+            <summary>The tilde key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Minus">
+            <summary>The minus key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Plus">
+            <summary>The plus key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.BracketLeft">
+            <summary>The left bracket key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.LBracket">
+            <summary>The left bracket key (equivalent to BracketLeft).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.BracketRight">
+            <summary>The right bracket key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.RBracket">
+            <summary>The right bracket key (equivalent to BracketRight).</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Semicolon">
+            <summary>The semicolon key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Quote">
+            <summary>The quote key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Comma">
+            <summary>The comma key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Period">
+            <summary>The period key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.Slash">
+            <summary>The slash key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.BackSlash">
+            <summary>The backslash key.</summary>
+        </member>
+        <member name="F:VitPro.Engine.Key.LastKey">
+            <summary>Indicates the last available keyboard key.</summary>
+        </member>
+        <member name="T:VitPro.Engine.Keyboard">
+            <summary>
+            Class for working with the keyboard.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.Keyboard.Pressed(VitPro.Engine.Key)">
+            <summary>
+            Check if the key is currently pressed.
+            </summary>
+            <param name="key">Key to check.</param>
+        </member>
+        <member name="T:VitPro.Engine.Mouse">
+            <summary>
+            Class for working with the mouse device.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.Mouse.Pressed(VitPro.Engine.MouseButton)">
+            <summary>
+            Checks whether a mouse button is currently pressed
+            </summary>
+            <param name="button">Mouse button to check.</param>
+        </member>
+        <member name="P:VitPro.Engine.Mouse.Visible">
+            <summary>
+            Gets or sets mouse cursor visibility state.
+            </summary>
+        </member>
+        <member name="P:VitPro.Engine.Mouse.Position">
+            <summary>
+            Gets or sets mouse position.
+            </summary>
+        </member>
+        <member name="T:VitPro.Engine.MouseButton">
+            <summary>
+            Enumerates all possible mouse buttons.
+            </summary>
+        </member>
+        <member name="F:VitPro.Engine.MouseButton.Left">
+            <summary>
+            The left mouse button.
+            </summary>
+        </member>
+        <member name="F:VitPro.Engine.MouseButton.Middle">
+            <summary>
+            The middle mouse button.
+            </summary>
+        </member>
+        <member name="F:VitPro.Engine.MouseButton.Right">
+            <summary>
+            The right mouse button.
+            </summary>
+        </member>
+        <member name="F:VitPro.Engine.MouseButton.LastButton">
+            <summary>
+            Indicates the last available mouse button.
+            </summary>
+        </member>
+        <member name="T:VitPro.Engine.ExtIEnumerable">
+            <summary>
+            Provides extensions for IEnumerable interface.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.ExtIEnumerable.Update``1(System.Collections.Generic.IEnumerable{``0},System.Double)">
+            <summary>
+            Update every element from a collection.
+            </summary>
+        </member>
+        <member name="M:VitPro.Engine.ExtIEnumerable.Render``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Render every element from a collection.
+            </summary>
+        </member>
+        <member name="T:VitPro.Color">
+            <summary>
+            Represents an RGBA color.
+            </summary>
+        </member>
+        <member name="F:VitPro.Color.White">
+            <summary>White color.</summary>
+        </member>
+        <member name="F:VitPro.Color.Black">
+            <summary>Black color.</summary>
+        </member>
+        <member name="F:VitPro.Color.Transparent">
+            <summary>Color(0, 0, 0, 0).</summary>
+        </member>
+        <member name="F:VitPro.Color.TransparentWhite">
+            <summary>Color(1, 1, 1, 0).</summary>
+        </member>
+        <member name="F:VitPro.Color.Red">
+            <summary>Red color.</summary>
+        </member>
+        <member name="F:VitPro.Color.Green">
+            <summary>Green color.</summary>
+        </member>
+        <member name="F:VitPro.Color.Blue">
+            <summary>Blue color.</summary>
+        </member>
+        <member name="F:VitPro.Color.Gray">
+            <summary>Gray color.</summary>
+        </member>
+        <member name="F:VitPro.Color.Cyan">
+            <summary>Cyan color.</summary>
+        </member>
+        <member name="F:VitPro.Color.Yellow">
+            <summary>Yellow color.</summary>
+        </member>
+        <member name="F:VitPro.Color.Magenta">
+            <summary>Magenta color.</summary>
+        </member>
+        <member name="F:VitPro.Color.Orange">
+            <summary>Orange color.</summary>
+        </member>
+        <member name="F:VitPro.Color.Sky">
+            <summary>Sky color.</summary>
+        </member>
+        <member name="M:VitPro.Color.FromHSV(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Create color from HSV components.
+            </summary>
+            <param name="h">Hue.</param>
+            <param name="s">Saturation.</param>
+            <param name="v">Value.</param>
+            <param name="a">Alpha.</param>
+        </member>
+        <member name="M:VitPro.Color.Mix(VitPro.Color,VitPro.Color)">
+            <summary>
+            Mix two colors
+            </summary>
+        </member>
+        <member name="M:VitPro.Color.Mix(VitPro.Color,VitPro.Color,System.Double,System.Double)">
+            <summary>
+            Mix two colors with the given coefficients.
+            </summary>
+        </member>
+        <member name="M:VitPro.Color.Blend(VitPro.Color,VitPro.Color)">
+            <summary>
+            Blend two colors using standard blending.
+            </summary>
+        </member>
+        <member name="M:VitPro.Color.MultAlpha(VitPro.Color,System.Double)">
+            <summary>
+            Multiply color's alpha value.
+            </summary>
+        </member>
+        <member name="M:VitPro.Color.FromBytes(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Create a color using byte color components.
+            </summary>
+        </member>
+        <member name="T:VitPro.GMath">
+            <summary>
+            Provides additional mathematical functions.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Clamp(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns a if x &lt; a, b if x &gt; b, x otherwise.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Clamp(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Returns a if x &lt; a, b if x &gt; b, x otherwise.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Clamp(System.Double,System.Double,System.Double)">
+            <summary>
+            Returns a if x &lt; a, b if x &gt; b, x otherwise.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Clamp(System.Double,System.Double)">
+            <summary>
+            Returns a if x &lt; -a, b if x &gt; a, x otherwise.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Clamp(System.Int32,System.Int32)">
+            <summary>
+            Returns a if x &lt; -a, b if x &gt; a, x otherwise.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Clamp(System.Int64,System.Int64)">
+            <summary>
+            Returns a if x &lt; -a, b if x &gt; a, x otherwise.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.AngleDifference(System.Double,System.Double)">
+            <summary>
+            Returns minimal angle difference between a1 and a2, negative if rotation is clockwise.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Sqr(System.Int32)">
+            <summary>
+            Returns x * x.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Sqr(System.Int64)">
+            <summary>
+            Returns x * x.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Sqr(System.Double)">
+            <summary>
+            Returns x * x.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Frac(System.Double)">
+            <summary>
+            Return fractional part of x.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Floor(System.Double)">
+            <summary>
+            Returns the largest integer less than or equal to x.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Floor(VitPro.Vec2)">
+            <summary>
+            Floor each component.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Ceil(System.Double)">
+            <summary>
+            Returns the smallest integral value that is greater than or equal to x.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Ceil(VitPro.Vec2)">
+            <summary>
+            Ceil each component.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Degrees(System.Double)">
+            <summary>
+            Convert radians into degrees.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Radians(System.Double)">
+            <summary>
+            Convert degrees into radians.
+            </summary>
+        </member>
+        <member name="M:VitPro.GMath.Mod(System.Int32,System.Int32)">
+            <summary>
+            True mod.
+            </summary>
+        </member>
+        <member name="T:VitPro.GRandom">
+            <summary>
+            Provides global thread-safe random methods.
+            </summary>
+        </member>
+        <member name="M:VitPro.GRandom.Probable(System.Double)">
+            <summary>
+            Returns boolean with the given probability.
+            </summary>
+            <param name="p">Event probability.</param>
+        </member>
+        <member name="M:VitPro.GRandom.Choice``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Chooses a random item from the list.
+            </summary>
+            <param name="a">List to choose from.</param>
+        </member>
+        <member name="M:VitPro.GRandom.Coin">
+            <summary>
+            Returns either true or false.
+            </summary>
+        </member>
+        <member name="M:VitPro.GRandom.Seed(System.Int32)">
+            <summary>
+            Reset the random generator using given seed.
+            </summary>
+            <param name="seed">New random seed.</param>
+        </member>
+        <member name="M:VitPro.GRandom.Next">
+            <summary>
+            Returns a nonnegative random number.
+            </summary>
+        </member>
+        <member name="M:VitPro.GRandom.Next(System.Int32)">
+            <summary>
+            Returns a nonnegative random number less than the specified maximum.
+            </summary>
+            <param name="maxValue">The exclusive upper bound of the random number to be generated. maxValue must be greater than or equal to zero.</param>
+        </member>
+        <member name="M:VitPro.GRandom.Next(System.Int32,System.Int32)">
+            <summary>
+            Returns a random number within a specified range.
+            </summary>
+            <param name="minValue">The inclusive lower bound of the random number returned.</param>
+            <param name="maxValue">The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.</param>
+        </member>
+        <member name="M:VitPro.GRandom.NextDouble">
+            <summary>
+            Returns a random number between 0.0 and 1.0.
+            </summary>
+        </member>
+        <member name="M:VitPro.GRandom.NextDouble(System.Double,System.Double)">
+            <summary>
+            Returns random double from the given interval.
+            </summary>
+            <param name="minValue">Minimal value.</param>
+            <param name="maxValue">Maximal value.</param>
+        </member>
+        <member name="M:VitPro.GRandom.NextBytes(System.Byte[])">
+            <summary>
+            Fills the elements of a specified array of bytes with random numbers.
+            </summary>
+            <param name="buffer">An array of bytes to contain random numbers.</param>
+        </member>
+        <member name="T:VitPro.ExtRandom">
+            <summary>
+            Provides extensions for Random class
+            </summary>
+        </member>
+        <member name="M:VitPro.ExtRandom.Probable(System.Random,System.Double)">
+            <summary>
+            Returns boolean with the given probability.
+            </summary>
+            <param name="p">Event probability.</param>
+        </member>
+        <member name="M:VitPro.ExtRandom.Choice``1(System.Random,System.Collections.Generic.IList{``0})">
+            <summary>
+            Chooses a random item from the list.
+            </summary>
+            <param name="a">List to choose from.</param>
+        </member>
+        <member name="M:VitPro.ExtRandom.Coin(System.Random)">
+            <summary>
+            Returns either true or false.
+            </summary>
+        </member>
+        <member name="M:VitPro.ExtRandom.NextDouble(System.Random,System.Double,System.Double)">
+            <summary>
+            Returns random double from the given interval.
+            </summary>
+            <param name="minValue">Minimal value.</param>
+            <param name="maxValue">Maximal value.</param>
+        </member>
+        <member name="T:VitPro.GUtil">
+            <summary>
+            Provides utility functions.
+            </summary>
+        </member>
+        <member name="M:VitPro.GUtil.Swap``1(``0@,``0@)">
+            <summary>
+            Swap a with b.
+            </summary>
+        </member>
+        <member name="M:VitPro.GUtil.Dump(System.Object,System.String)">
+            <summary>
+            Serialize object into a file.
+            </summary>
+        </member>
+        <member name="M:VitPro.GUtil.Load``1(System.String)">
+            <summary>
+            Deserialize object from a file.
+            </summary>
+        </member>
+        <member name="M:VitPro.GUtil.ReadFile(System.String)">
+            <summary>
+            Reads contents of a text file.
+            </summary>
+            <param name="path">File to read.</param>
+        </member>
+        <member name="T:VitPro.Vec2i">
+            <summary>
+            Represents a 2d vector with integer coordinates.
+            </summary>
+        </member>
+        <member name="T:VitPro.Vec2">
+            <summary>
+            Represents a 2d vector with double coordinates.
+            </summary>
+        </member>
+        <member name="M:VitPro.Vec2.Dot(VitPro.Vec2,VitPro.Vec2)">
+            <summary>
+            Get the dot product of two vectors.
+            </summary>
+            <param name="a">First vector.</param>
+            <param name="b">Second vector.</param>
+        </member>
+        <member name="M:VitPro.Vec2.Skew(VitPro.Vec2,VitPro.Vec2)">
+            <summary>
+            Get the skew product of two vectors.
+            </summary>
+            <param name="a">First vector.</param>
+            <param name="b">Second vector.</param>
+            <returns></returns>
+        </member>
+        <member name="F:VitPro.Vec2.OrtX">
+            <summary>
+            Vec2(1, 0).
+            </summary>
+        </member>
+        <member name="F:VitPro.Vec2.OrtY">
+            <summary>
+            Vec2(0, 1).
+            </summary>
+        </member>
+        <member name="F:VitPro.Vec2.Zero">
+            <summary>
+            Vec2(0, 0).
+            </summary>
+        </member>
+        <member name="M:VitPro.Vec2.Rotate(VitPro.Vec2,System.Double)">
+            <summary>
+            Rotate a vector.
+            </summary>
+            <param name="a">Vector to rotate.</param>
+            <param name="angle">Ratation angle.</param>
+            <returns>Rotated vector.</returns>
+        </member>
+        <member name="M:VitPro.Vec2.Rotate90(VitPro.Vec2)">
+            <summary>
+            Rotate a vector 90 degrees counter-clockwise.
+            </summary>
+            <param name="a">Vector to rotate.</param>
+        </member>
+        <member name="M:VitPro.Vec2.Clamp(VitPro.Vec2,System.Double)">
+            <summary>
+            Clamp the length of a vector.
+            </summary>
+            <param name="a">Vector to clamp.</param>
+            <param name="maxlen">Maximal length.</param>
+            <returns>Clamped vector.</returns>
+        </member>
+        <member name="M:VitPro.Vec2.CompMult(VitPro.Vec2,VitPro.Vec2)">
+            <summary>
+            Multiply two vectors componentwise.
+            </summary>
+            <param name="a">First vector.</param>
+            <param name="b">Second vector.</param>
+        </member>
+        <member name="M:VitPro.Vec2.CompDiv(VitPro.Vec2,VitPro.Vec2)">
+            <summary>
+            Divide one vector by another componentwise.
+            </summary>
+            <param name="a">First vector.</param>
+            <param name="b">Second vector.</param>
+        </member>
+        <member name="P:VitPro.Vec2.SqrLength">
+            <summary>
+            Get the square length of the vector.
+            </summary>
+        </member>
+        <member name="P:VitPro.Vec2.Arg">
+            <summary>
+            Get the argument of the vector.
+            </summary>
+        </member>
+        <member name="P:VitPro.Vec2.Length">
+            <summary>
+            Get the length of the vector.
+            </summary>
+        </member>
+        <member name="P:VitPro.Vec2.Unit">
+            <summary>
+            Get the unit vector.
+            </summary>
+        </member>
+        <member name="T:VitPro.ExtAction">
+            <summary>
+            Provides extensions to Action delegates.
+            </summary>
+        </member>
+        <member name="M:VitPro.ExtAction.Apply(System.Action)">
+            <summary>
+            Apply action if not null.
+            </summary>
+        </member>
+        <member name="M:VitPro.ExtAction.Apply``1(System.Action{``0},``0)">
+            <summary>
+            Apply action if not null.
+            </summary>
+        </member>
+        <member name="M:VitPro.ExtAction.Apply``2(System.Action{``0,``1},``0,``1)">
+            <summary>
+            Apply action if not null.
+            </summary>
+        </member>
+        <member name="M:VitPro.ExtAction.Apply``3(System.Action{``0,``1,``2},``0,``1,``2)">
+            <summary>
+            Apply action if not null.
+            </summary>
+        </member>
+    </members>
+</doc>
