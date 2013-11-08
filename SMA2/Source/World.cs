@@ -24,6 +24,22 @@ namespace VitPro.SMA2 {
 				asteroids.Add(new Asteroid());
 			}
 			asteroids.Update(dt);
+			foreach(var a in asteroids)
+				foreach (var b in asteroids) {
+					Vec2 dr = b.Position - a.Position;
+					if (dr.Length > b.Size + a.Size)
+						continue;
+					double pen = b.Size + a.Size - dr.Length;
+					dr = dr.Unit;
+					double dv = (b.Velocity - a.Velocity) * dr;
+					if (dv > 0)
+						continue;
+					b.Position += dr * pen / 2;
+					a.Position -= dr * pen / 2;
+					const double E = 1;
+					b.Velocity -= E * dv * dr;
+					a.Velocity += E * dv * dr;
+				}
 		}
 
 		public void Render() {
