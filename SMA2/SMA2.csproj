@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Source\Program.cs" />
+    <Compile Include="Source\World.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -2,12 +2,28 @@
 using VitPro;
 using VitPro.Engine;
 
-class Test : State {
-}
+namespace VitPro.SMA2 {
 
-class Program {
-	static void Main(string[] args) {
-		App.Title = "SMA2";
-		App.Run(new Test());
+	class Test : State {
+		World world = new World();
+
+		public override void Update(double dt) {
+			base.Update(dt);
+			world.Update(dt);
+		}
+
+		public override void Render() {
+			base.Render();
+			world.Render();
+		}
+
 	}
+
+	class Program {
+		static void Main(string[] args) {
+			App.Title = "SMA2";
+			App.Run(new Test());
+		}
+	}
+
 }
