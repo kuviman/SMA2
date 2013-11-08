@@ -13,8 +13,9 @@ namespace VitPro.SMA2 {
 		public HashSet<Asteroid> asteroids = new HashSet<Asteroid>();
 
 		double timeTillNextAsteroid = 0;
+		const double AsteroidDespawnDistance = 20;
 		const double minTime = 0.1;
-		const double maxTime = 2;
+		const double maxTime = 1;
 
 		public void Update(double dt) {
 			player.Update(dt);
@@ -40,6 +41,7 @@ namespace VitPro.SMA2 {
 					b.Velocity -= E * dv * dr;
 					a.Velocity += E * dv * dr;
 				}
+			asteroids.RemoveWhere(a => a.Position.Length > AsteroidDespawnDistance);
 		}
 
 		public void Render() {

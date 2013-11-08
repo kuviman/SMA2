@@ -11,18 +11,23 @@ namespace VitPro.SMA2 {
 		public Vec2 Velocity;
 		public double Size = 0.7;
 
-		const double InitDistance = 5;
+		public double Rotation = GRandom.NextDouble(0, 2 * Math.PI);
+		public double RotSpeed = GRandom.NextDouble(-Math.PI, Math.PI);
+
+		const double InitDistance = 15;
 		const double Speed = 4;
 
 		public Asteroid() {
 			Position = Vec2.Rotate(Vec2.OrtX, GRandom.NextDouble(0, 2 * Math.PI)) * InitDistance;
-			Velocity = Vec2.Rotate(Vec2.OrtX, GRandom.NextDouble(0, 2 * Math.PI)) * Speed;
+			const double spot = Math.PI / 6;
+			Velocity = Vec2.Rotate(Vec2.OrtX, Math.PI + Position.Arg + GRandom.NextDouble(-spot, spot)) * Speed;
 		}
 
 		public void Render() {
 			Draw.Save();
 			Draw.Translate(Position);
 			Draw.Scale(Size * 2);
+			Draw.Rotate(Rotation);
 			Draw.Align(0.5, 0.5);
 			texture.Render();
 			Draw.Load();
@@ -30,6 +35,7 @@ namespace VitPro.SMA2 {
 
 		public void Update(double dt) {
 			Position += Velocity * dt;
+			Rotation += RotSpeed * dt;
 		}
 
 	}
