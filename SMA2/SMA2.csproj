@@ -53,6 +53,7 @@
     <Compile Include="Source\Asteroid.cs" />
     <Compile Include="Source\Player.cs" />
     <Compile Include="Source\Program.cs" />
+    <Compile Include="Source\SpaceObject.cs" />
     <Compile Include="Source\World.cs" />
   </ItemGroup>
   <ItemGroup />
