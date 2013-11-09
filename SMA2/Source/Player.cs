@@ -8,6 +8,12 @@ namespace VitPro.SMA2 {
 		const double Speed = 5;
 		const double Accel = 20;
 
+		const double SwingAngle = Math.PI / 40;
+		const double SwingSpeed = 4;
+		const double MoveSwing = Math.PI / 20;
+
+		double t = 0;
+
 		public Player() {
 			Position = Vec2.Zero;
 			Size = 1;
@@ -15,6 +21,7 @@ namespace VitPro.SMA2 {
 
 		public override void Update(double dt) {
 			base.Update(dt);
+			t += SwingSpeed * dt;
 			double vx = 0, vy = 0;
 			if (Key.A.Pressed())
 				vx -= 1;
@@ -35,6 +42,7 @@ namespace VitPro.SMA2 {
 			Draw.Save();
 			Draw.Translate(Position);
 			Draw.Scale(Size * 2);
+			Draw.Rotate(Math.Sin(t) * SwingAngle + Velocity.X / Speed * MoveSwing);
 			Draw.Align(0.5, 0.5);
 			texture.Render();
 			Draw.Load();
