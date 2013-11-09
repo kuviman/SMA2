@@ -6,6 +6,7 @@ namespace VitPro.SMA2 {
 	class Player : SpaceObject {
 
 		const double Speed = 5;
+		const double Accel = 20;
 
 		public Player() {
 			Position = Vec2.Zero;
@@ -23,7 +24,8 @@ namespace VitPro.SMA2 {
 				vy += 1;
 			if (Key.S.Pressed())
 				vy -= 1;
-			Position += new Vec2(vx, vy).Unit * Speed * dt;
+			var targetVel = new Vec2(vx, vy).Unit * Speed;
+			Velocity += Vec2.Clamp(targetVel - Velocity, Accel * dt);
 		}
 
 		static Texture texture = new Texture("../Data/Player.png");
