@@ -7,8 +7,6 @@ namespace VitPro.SMA2 {
 
 		static Texture texture = new Texture("../Data/Asteroid.png");
 
-		public Vec2 Velocity;
-
 		public double Rotation = GRandom.NextDouble(0, 2 * Math.PI);
 		public double RotSpeed = GRandom.NextDouble(-Math.PI, Math.PI);
 
@@ -35,7 +33,6 @@ namespace VitPro.SMA2 {
 
 		public override void Update(double dt) {
 			base.Update(dt);
-			Position += Velocity * dt;
 			Rotation += RotSpeed * dt;
 		}
 

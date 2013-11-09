@@ -7,11 +7,14 @@ namespace VitPro.SMA2 {
 
 		public World World { get; set; }
 
-		public double Size;
-		public Vec2 Position;
+		public double Size = 1;
+		public Vec2 Position = Vec2.Zero;
+		public Vec2 Velocity = Vec2.Zero;
 
 		public virtual void Render() { }
-		public virtual void Update(double dt) { }
+		public virtual void Update(double dt) {
+			Position += Velocity * dt;
+		}
 	}
 
 }
