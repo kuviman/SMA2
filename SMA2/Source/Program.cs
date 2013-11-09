@@ -15,7 +15,7 @@ namespace VitPro.SMA2 {
 		public override void KeyDown(Key key) {
 			base.KeyDown(key);
 			if (key == Key.Space)
-				world.asteroids.Add(new Asteroid());
+				world.Add(new Asteroid());
 		}
 
 		public override void Render() {

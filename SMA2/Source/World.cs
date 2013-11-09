@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using VitPro.Engine;
 
@@ -10,7 +11,22 @@ namespace VitPro.SMA2 {
 		Texture back = new Texture("../Data/Back.png");
 
 		public Player player = new Player();
-		public HashSet<Asteroid> asteroids = new HashSet<Asteroid>();
+
+		HashSet<SpaceObject> objects = new HashSet<SpaceObject>();
+
+		public World() {
+			Add(player);
+		}
+
+		public IEnumerable<Asteroid> asteroids {
+			get {
+				foreach (var o in objects) {
+					var a = o as Asteroid;
+					if (a != null)
+						yield return a;
+				}
+			}
+		}
 
 		double timeTillNextAsteroid = 0;
 		const double AsteroidDespawnDistance = 20;
@@ -18,15 +34,14 @@ namespace VitPro.SMA2 {
 		const double maxTime = 1;
 
 		public void Update(double dt) {
-			player.Update(dt);
 			timeTillNextAsteroid -= dt;
 			if (timeTillNextAsteroid < 0) {
 				timeTillNextAsteroid = GRandom.NextDouble(minTime, maxTime);
-				asteroids.Add(new Asteroid());
+				Add(new Asteroid());
 			}
-			asteroids.Update(dt);
-			foreach(var a in asteroids)
-				foreach (var b in asteroids) {
+			objects.Update(dt);
+			foreach(var a in objects)
+				foreach (var b in objects) {
 					Vec2 dr = b.Position - a.Position;
 					if (dr.Length > b.Size + a.Size)
 						continue;
@@ -41,7 +56,7 @@ namespace VitPro.SMA2 {
 					b.Velocity -= E * dv * dr;
 					a.Velocity += E * dv * dr;
 				}
-			asteroids.RemoveWhere(a => a.Position.Length > AsteroidDespawnDistance);
+			objects.RemoveWhere(a => a.Position.Length > AsteroidDespawnDistance);
 		}
 
 		public void Render() {
@@ -55,12 +70,15 @@ namespace VitPro.SMA2 {
 			back.Render();
 			Draw.Load();
 
-			player.Render();
-			asteroids.Render();
+			objects.Render();
 
 			Draw.Load();
 		}
 
+
+		internal void Add(SpaceObject o) {
+			objects.Add(o);
+		}
 	}
 
 }
