@@ -1,0 +1,3 @@
+[submodule "Dependencies/VPE"]
+	path = Dependencies/VPE
+	url = https://github.com/kuviman/VPE

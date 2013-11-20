@@ -45,9 +45,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="VPE">
-      <HintPath>Dependencies\VPE\$(Configuration)\VPE.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Source\Asteroid.cs" />
@@ -56,7 +53,12 @@
     <Compile Include="Source\SpaceObject.cs" />
     <Compile Include="Source\World.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Dependencies\VPE\VPE\VPE.csproj">
+      <Project>{00c3d8f1-5374-42a2-9d80-354c5db2765c}</Project>
+      <Name>VPE</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Aim.png" />
     <Content Include="Data\Asteroid.png" />
