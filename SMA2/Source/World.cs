@@ -68,6 +68,11 @@ namespace VitPro.SMA2 {
 				}
 			}
 			objects.RemoveWhere(a => a.Position.Length > AsteroidDespawnDistance);
+			foreach (var o in new List<SpaceObject>(objects.Where(a => !a.Alive))) {
+				if (o is Explosion)
+					continue;
+				Add(new Explosion(o.Position, o.Size * 1.5));
+			}
 			objects.RemoveWhere(a => !a.Alive);
 		}
 
