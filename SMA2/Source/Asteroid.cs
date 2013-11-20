@@ -13,7 +13,7 @@ namespace VitPro.SMA2 {
 		const double InitDistance = 15;
 		const double Speed = 4;
 
-		public Asteroid() {
+		public Asteroid() : base(50) {
 			Position = Vec2.Rotate(Vec2.OrtX, GRandom.NextDouble(0, 2 * Math.PI)) * InitDistance;
 			const double spot = Math.PI / 6;
 			Velocity = Vec2.Rotate(Vec2.OrtX, Math.PI + Position.Arg + GRandom.NextDouble(-spot, spot)) * Speed;
