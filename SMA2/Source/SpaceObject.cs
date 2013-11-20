@@ -8,6 +8,8 @@ namespace VitPro.SMA2 {
 		double _health;
 		public double Health { get { return _health; } set { _health = Math.Max(value, 0); } }
 
+		public bool Alive { get { return Health > 0; } }
+
 		public double MaxHealth { get; set; }
 
 		public SpaceObject(double maxHealth) {

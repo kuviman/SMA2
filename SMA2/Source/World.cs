@@ -63,6 +63,7 @@ namespace VitPro.SMA2 {
 					a.Velocity += E * dv * dr;
 				}
 			objects.RemoveWhere(a => a.Position.Length > AsteroidDespawnDistance);
+			objects.RemoveWhere(a => !a.Alive);
 		}
 
 		public void Render() {
