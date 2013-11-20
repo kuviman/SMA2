@@ -40,8 +40,12 @@ namespace VitPro.SMA2 {
 				Add(new Asteroid());
 			}
 			objects.Update(dt);
-			foreach(var a in objects)
+			foreach (var a in objects) {
+				if (!a.Collideable)
+					continue;
 				foreach (var b in objects) {
+					if (!b.Collideable)
+						continue;
 					Vec2 dr = b.Position - a.Position;
 					if (dr.Length > b.Size + a.Size)
 						continue;
@@ -62,6 +66,7 @@ namespace VitPro.SMA2 {
 					b.Velocity -= E * dv * dr;
 					a.Velocity += E * dv * dr;
 				}
+			}
 			objects.RemoveWhere(a => a.Position.Length > AsteroidDespawnDistance);
 			objects.RemoveWhere(a => !a.Alive);
 		}

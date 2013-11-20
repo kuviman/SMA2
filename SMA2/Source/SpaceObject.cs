@@ -5,6 +5,8 @@ namespace VitPro.SMA2 {
 
 	class SpaceObject : IRenderable, IUpdateable {
 
+		public bool Collideable = true;
+
 		double _health;
 		public double Health { get { return _health; } set { _health = Math.Max(value, 0); } }
 
