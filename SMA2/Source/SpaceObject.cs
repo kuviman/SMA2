@@ -5,7 +5,9 @@ namespace VitPro.SMA2 {
 
 	class SpaceObject : IRenderable, IUpdateable {
 
-		public double Health { get; set; }
+		double _health;
+		public double Health { get { return _health; } set { _health = Math.Max(value, 0); } }
+
 		public double MaxHealth { get; set; }
 
 		public SpaceObject(double maxHealth) {
