@@ -50,6 +50,12 @@ namespace VitPro.SMA2 {
 					double dv = (b.Velocity - a.Velocity) * dr;
 					if (dv > 0)
 						continue;
+
+					const double DamageK = 5;
+					double damage = (-dv) * DamageK;
+					a.Health -= damage;
+					b.Health -= damage;
+
 					b.Position += dr * pen / 2;
 					a.Position -= dr * pen / 2;
 					const double E = 1;
