@@ -18,9 +18,20 @@ namespace VitPro.SMA2 {
 				world.Add(new Asteroid());
 		}
 
+
+		static SystemFont font = new SystemFont("Courier New", 32, FontStyle.Bold);
 		public override void Render() {
 			base.Render();
 			world.Render();
+
+			Draw.Save();
+			new Camera(10).Apply();
+			Draw.Translate(-5, -5);
+			var text = string.Format("HEALTH : {0:000}", (int)world.player.Health);
+			Draw.Rect(0, 0, font.Measure(text), 1, new Color(1, 1, 1, 0.5));
+			Draw.Color(Color.Red);
+			font.Render(text);
+			Draw.Load();
 		}
 
 	}
