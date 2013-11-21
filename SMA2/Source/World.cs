@@ -14,6 +14,8 @@ namespace VitPro.SMA2 {
 
 		HashSet<SpaceObject> objects = new HashSet<SpaceObject>();
 
+		public static World Current = null;
+
 		public World() {
 			Add(player);
 		}
@@ -34,6 +36,7 @@ namespace VitPro.SMA2 {
 		const double maxTime = 1;
 
 		public void Update(double dt) {
+			Current = this;
 			timeTillNextAsteroid -= dt;
 			if (timeTillNextAsteroid < 0) {
 				timeTillNextAsteroid = GRandom.NextDouble(minTime, maxTime);
