@@ -55,6 +55,8 @@ namespace VitPro.SMA2 {
 		public void Shoot(Vec2 pos) {
 			if (RemainingReloadTime > 0)
 				return;
+			pos = Position + (pos - Position).Unit * 100500;
+			World.Current.Add(new Lazer(Position, pos));
 			RemainingReloadTime = ReloadTime;
 			const double damage = 100;
 			foreach (var a in World.Current.asteroids)

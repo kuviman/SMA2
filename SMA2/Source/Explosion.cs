@@ -9,6 +9,7 @@ namespace VitPro.SMA2 {
 			: base(0.3) {
 				Position = pos;
 				Size = size;
+				Collideable = false;
 		}
 
 		public override void Update(double dt) {
