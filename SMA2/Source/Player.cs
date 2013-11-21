@@ -33,6 +33,7 @@ namespace VitPro.SMA2 {
 				vy -= 1;
 			var targetVel = new Vec2(vx, vy).Unit * Speed;
 			Velocity += Vec2.Clamp(targetVel - Velocity, Accel * dt);
+			RemainingReloadTime -= dt;
 		}
 
 		static Texture texture = new Texture("../Data/Player.png");
@@ -48,6 +49,18 @@ namespace VitPro.SMA2 {
 			Draw.Load();
 		}
 
+		public double RemainingReloadTime = 0;
+		public double ReloadTime = 0.5;
+
+		public void Shoot(Vec2 pos) {
+			if (RemainingReloadTime > 0)
+				return;
+			RemainingReloadTime = ReloadTime;
+			const double damage = 100;
+			foreach (var a in World.Current.asteroids)
+				if (Math.Abs((a.Position - this.Position) ^ (pos - Position).Unit) < a.Size)
+					a.Health -= damage;
+		}
 	}
 
 }

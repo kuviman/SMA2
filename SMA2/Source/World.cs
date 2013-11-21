@@ -7,7 +7,7 @@ namespace VitPro.SMA2 {
 
 	class World {
 
-		Camera cam = new Camera(20);
+		public Camera cam = new Camera(20);
 		Texture back = new Texture("../Data/Back.png");
 
 		public Player player = new Player();
