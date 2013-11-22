@@ -18,6 +18,7 @@ namespace VitPro.SMA2 {
 			const double spot = Math.PI / 6;
 			Velocity = Vec2.Rotate(Vec2.OrtX, Math.PI + Position.Arg + GRandom.NextDouble(-spot, spot)) * Speed;
 			Size = 0.7;
+			Position += World.Current.player.Position;
 		}
 
 		public override void Render() {

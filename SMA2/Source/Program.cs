@@ -22,6 +22,7 @@ namespace VitPro.SMA2 {
 		static SystemFont font = new SystemFont("Courier New", 32, FontStyle.Bold);
 		public override void Render() {
 			base.Render();
+			Draw.Clear(Color.Black);
 			world.Render();
 
 			Draw.Save();

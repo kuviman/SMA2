@@ -35,7 +35,9 @@ namespace VitPro.SMA2 {
 		const double minTime = 0.1;
 		const double maxTime = 1;
 
+		const double camSpeed = 5;
 		public void Update(double dt) {
+			cam.Position += (player.Position - cam.Position) * Math.Min(dt * camSpeed, 1);
 			Current = this;
 			timeTillNextAsteroid -= dt;
 			if (timeTillNextAsteroid < 0) {
@@ -70,7 +72,7 @@ namespace VitPro.SMA2 {
 					a.Velocity += E * dv * dr;
 				}
 			}
-			objects.RemoveWhere(a => a.Position.Length > AsteroidDespawnDistance);
+			objects.RemoveWhere(a => (a.Position - player.Position).Length > AsteroidDespawnDistance);
 			foreach (var o in new List<SpaceObject>(objects.Where(a => !a.Alive))) {
 				if (!o.Collideable)
 					continue;
@@ -84,6 +86,7 @@ namespace VitPro.SMA2 {
 			cam.Apply();
 
 			Draw.Save();
+			Draw.Translate(cam.Position / 2);
 			Draw.Scale(20);
 			Draw.Scale((double)back.Width / back.Height, 1);
 			Draw.Align(0.5, 0.5);
