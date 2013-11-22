@@ -8,7 +8,8 @@ namespace VitPro.SMA2 {
 	class World {
 
 		public Camera cam = new Camera(20);
-		Texture back = new Texture("../Data/Back.png");
+		static Texture back = new Texture("../Data/Back.png");
+		public static Texture cloudMap = new Texture(1000, 500, true);
 
 		public Player player = new Player();
 
@@ -18,6 +19,9 @@ namespace VitPro.SMA2 {
 
 		public World() {
 			Add(player);
+			for (int i = 0; i < 100; i++) {
+				Add(new Cloud());				
+			}
 		}
 
 		public IEnumerable<Asteroid> asteroids {
@@ -72,7 +76,7 @@ namespace VitPro.SMA2 {
 					a.Velocity += E * dv * dr;
 				}
 			}
-			objects.RemoveWhere(a => (a.Position - player.Position).Length > AsteroidDespawnDistance);
+			objects.RemoveWhere(a => !(a is Cloud) && (a.Position - player.Position).Length > AsteroidDespawnDistance);
 			foreach (var o in new List<SpaceObject>(objects.Where(a => !a.Alive))) {
 				if (!o.Collideable)
 					continue;
@@ -82,6 +86,11 @@ namespace VitPro.SMA2 {
 		}
 
 		public void Render() {
+
+			Draw.BeginTexture(cloudMap);
+			Draw.Clear(1, 1, 1, 0);
+			Draw.EndTexture();
+
 			Draw.Save();
 			cam.Apply();
 
@@ -97,6 +106,14 @@ namespace VitPro.SMA2 {
 
 			objects.Render();
 
+			Draw.Load();
+
+			Draw.Save();
+			new Camera(1).Apply();
+			Draw.Scale((double)cloudMap.Width / cloudMap.Height, 1);
+			Draw.Align(0.5, 0.5);
+			Draw.Color(1, 1, 1, 0.3);
+			cloudMap.Render();
 			Draw.Load();
 		}
 
