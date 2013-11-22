@@ -86,11 +86,13 @@ namespace VitPro.SMA2 {
 			cam.Apply();
 
 			Draw.Save();
-			Draw.Translate(cam.Position / 2);
+			Draw.Translate(cam.Position);
 			Draw.Scale(20);
-			Draw.Scale((double)back.Width / back.Height, 1);
+			double aspect = (double)back.Width / back.Height;
+			Draw.Scale(aspect, 1);
 			Draw.Align(0.5, 0.5);
-			back.Render();
+			const double k = 50;
+			back.SubTexture(cam.Position.X / aspect / k, cam.Position.Y / k, 1, 1).Render();
 			Draw.Load();
 
 			objects.Render();
