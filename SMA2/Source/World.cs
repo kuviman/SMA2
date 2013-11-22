@@ -35,9 +35,9 @@ namespace VitPro.SMA2 {
 		}
 
 		double timeTillNextAsteroid = 0;
-		const double AsteroidDespawnDistance = 20;
-		const double minTime = 0.1;
-		const double maxTime = 1;
+		const double AsteroidDespawnDistance = 25;
+		const double minTime = 0.05;
+		const double maxTime = 0.2;
 
 		const double camSpeed = 5;
 		public void Update(double dt) {
@@ -141,11 +141,12 @@ namespace VitPro.SMA2 {
 
 			Draw.Save();
 			Draw.Translate(cam.Position);
-			Draw.Scale(20);
+			Draw.Scale(30);
 			double aspect = (double)back.Width / back.Height;
 			Draw.Scale(aspect, 1);
 			Draw.Align(0.5, 0.5);
 			const double k = 50;
+			Draw.Color(0.5, 0.5, 0.5, 1);
 			back.SubTexture(cam.Position.X / aspect / k, cam.Position.Y / k, 1, 1).Render();
 			Draw.Load();
 

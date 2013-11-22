@@ -10,7 +10,7 @@ namespace VitPro.SMA2 {
 		public double Rotation = GRandom.NextDouble(0, 2 * Math.PI);
 		public double RotSpeed = GRandom.NextDouble(-Math.PI, Math.PI);
 
-		const double InitDistance = 15;
+		const double InitDistance = 20;
 		const double Speed = 4;
 
 		public Asteroid() : base(50) {
@@ -19,6 +19,7 @@ namespace VitPro.SMA2 {
 			Velocity = Vec2.Rotate(Vec2.OrtX, Math.PI + Position.Arg + GRandom.NextDouble(-spot, spot)) * Speed;
 			Size = 0.7;
 			Position += World.Current.player.Position;
+			Velocity += World.Current.player.Velocity / 2;
 		}
 
 		public override void Render() {
