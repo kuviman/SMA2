@@ -19,7 +19,7 @@ namespace VitPro.SMA2 {
 
 		public World() {
 			Add(player);
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 1000; i++) {
 				Add(new Cloud());				
 			}
 		}
@@ -41,6 +41,17 @@ namespace VitPro.SMA2 {
 
 		const double camSpeed = 5;
 		public void Update(double dt) {
+
+			const double dist = 25;
+			PosGroup<SpaceObject> posGroup = new PosGroup<SpaceObject>(
+				player.Position.X - dist, player.Position.Y - dist,
+				player.Position.X + dist, player.Position.Y + dist);
+			double maxSize = 0;
+			foreach (var o in objects) {
+				posGroup.Add(o, o.Position);
+				maxSize = Math.Max(maxSize, o.Size);
+			}
+
 			cam.Position += (player.Position - cam.Position) * Math.Min(dt * camSpeed, 1);
 			Current = this;
 			timeTillNextAsteroid -= dt;
@@ -52,7 +63,8 @@ namespace VitPro.SMA2 {
 			foreach (var a in objects) {
 				if (!a.Collideable)
 					continue;
-				foreach (var b in objects) {
+				double d2 = a.Size + maxSize;
+				foreach (var b in posGroup.Query(a.Position - new Vec2(d2, d2), a.Position + new Vec2(d2, d2))) {
 					if (!b.Collideable)
 						continue;
 					Vec2 dr = b.Position - a.Position;
@@ -87,10 +99,6 @@ namespace VitPro.SMA2 {
 
 		public void Render() {
 
-			Draw.BeginTexture(cloudMap);
-			Draw.Clear(1, 1, 1, 0);
-			Draw.EndTexture();
-
 			Draw.Save();
 			cam.Apply();
 
@@ -104,7 +112,20 @@ namespace VitPro.SMA2 {
 			back.SubTexture(cam.Position.X / aspect / k, cam.Position.Y / k, 1, 1).Render();
 			Draw.Load();
 
-			objects.Render();
+			foreach (var o in objects) {
+				if (o is Cloud)
+					continue;
+				o.Render();
+			}
+
+			Draw.BeginTexture(cloudMap);
+			cam.Apply();
+			Draw.Clear(1, 1, 1, 0);
+			foreach (var o in objects) {
+				if (o is Cloud)
+					o.Render();
+			}
+			Draw.EndTexture();
 
 			Draw.Load();
 

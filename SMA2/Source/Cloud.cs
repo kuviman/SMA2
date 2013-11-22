@@ -19,17 +19,18 @@ namespace VitPro.SMA2 {
 		}
 
 		public override void Render() {
+			if (World.Current == null || World.Current.player == null)
+				return;
+			if ((Position - World.Current.player.Position).Length > World.Current.cam.FOV * 2)
+				return;
 			base.Render();
-			Draw.BeginTexture(World.cloudMap);
 			Draw.Save();
-			World.Current.cam.Apply();
 			Draw.Translate(Position);
 			Draw.Scale(Size * 2);
 			Draw.Rotate(Rotation);
 			Draw.Align(0.5, 0.5);
 			texture.Render();
 			Draw.Load();
-			Draw.EndTexture();
 		}
 
 		public override void Update(double dt) {
