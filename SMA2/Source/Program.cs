@@ -44,6 +44,9 @@ namespace VitPro.SMA2 {
 
 	class Program {
 		static void Main(string[] args) {
+#if !DEBUG
+			App.Fullscreen = true;
+#endif
 			App.Title = "SMA2";
 			App.Run(new Test());
 		}
