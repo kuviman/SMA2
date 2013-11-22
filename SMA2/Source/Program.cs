@@ -16,6 +16,8 @@ namespace VitPro.SMA2 {
 			base.KeyDown(key);
 			if (key == Key.Space)
 				world.Add(new Asteroid());
+			if (key == Key.F2)
+				world = new World();
 		}
 
 
