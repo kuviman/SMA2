@@ -67,6 +67,8 @@ namespace VitPro.SMA2 {
 				foreach (var b in posGroup.Query(a.Position - new Vec2(d2, d2), a.Position + new Vec2(d2, d2))) {
 					if (!b.Collideable)
 						continue;
+					if (a == b)
+						continue;
 					Vec2 dr = b.Position - a.Position;
 					if (dr.Length > b.Size + a.Size)
 						continue;
@@ -88,6 +90,41 @@ namespace VitPro.SMA2 {
 					a.Velocity += E * dv * dr;
 				}
 			}
+
+			foreach (var a in objects) {
+				if (a is Cloud) {
+					double REPL = a.Size;
+					double REP = 20;
+					double GRAV = 2;
+					double GRAVL = 2 * a.Size;
+					double MINL = a.Size * 0.1;
+					double d2 = Math.Max(GRAVL, REPL * 2);
+					foreach (var b in posGroup.Query(a.Position - new Vec2(d2, d2), a.Position + new Vec2(d2, d2))) {
+						if (!(b is Cloud))
+							continue;
+						if (a == b)
+							continue;
+						Vec2 dv = b.Position - a.Position;
+						double d = dv.Length;
+						if (d < MINL)
+							continue;
+						if (d < REPL * 2) {
+							Vec2 f = (d - REPL) * REP * dv * Math.Pow(d, -3) * dt;
+							a.Velocity += f;
+							b.Velocity -= f;
+						} else if (d < GRAVL) {
+							Vec2 f = GRAV * dv * Math.Pow(d, -3) * dt;
+							a.Velocity += f;
+							b.Velocity -= f;
+						}
+					}
+				}
+			}
+
+			const double CLOUDSPEED = 1;
+			foreach (var cloud in objects.Where(o => o is Cloud))
+				cloud.Velocity = Vec2.Clamp(cloud.Velocity, CLOUDSPEED);
+
 			objects.RemoveWhere(a => !(a is Cloud) && (a.Position - player.Position).Length > AsteroidDespawnDistance);
 			foreach (var o in new List<SpaceObject>(objects.Where(a => !a.Alive))) {
 				if (!o.Collideable)
