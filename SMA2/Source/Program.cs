@@ -18,6 +18,8 @@ namespace VitPro.SMA2 {
 				world.Add(new Asteroid());
 			if (key == Key.F2)
 				world = new World();
+			if (key == Key.Escape)
+				Close();
 		}
 
 
@@ -50,7 +52,7 @@ namespace VitPro.SMA2 {
 			App.Fullscreen = true;
 #endif
 			App.Title = "SMA2";
-			App.Run(new Test());
+			App.Run(new MainMenu());
 		}
 	}
 

@@ -51,6 +51,7 @@
     <Compile Include="Source\Cloud.cs" />
     <Compile Include="Source\Lazer.cs" />
     <Compile Include="Source\Explosion.cs" />
+    <Compile Include="Source\MainMenu.cs" />
     <Compile Include="Source\Player.cs" />
     <Compile Include="Source\Program.cs" />
     <Compile Include="Source\SpaceObject.cs" />
