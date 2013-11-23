@@ -152,9 +152,12 @@ namespace VitPro.SMA2 {
 				}
 			}
 
-			const double CLOUDSPEED = 1;
-			foreach (var cloud in objects.Where(o => o is Cloud))
+			const double CLOUDSPEED = 2;
+			foreach (var cloud in objects.Where(o => o is Cloud)) {
+				const double frict = 1;
+				cloud.Velocity -= cloud.Velocity * frict * dt;
 				cloud.Velocity = Vec2.Clamp(cloud.Velocity, CLOUDSPEED);
+			}
 
 			objects.RemoveWhere(a => !(a is Cloud) && (a.Position - player.Position).Length > AsteroidDespawnDistance);
 			foreach (var o in new List<SpaceObject>(objects.Where(a => !a.Alive))) {
