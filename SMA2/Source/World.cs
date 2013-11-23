@@ -139,6 +139,16 @@ namespace VitPro.SMA2 {
 							a.Velocity -= ASTK * dv / d;
 						}
 					}
+
+					{
+						Vec2 dv = player.Position - a.Position;
+						double d = dv.SqrLength;
+						const double PLAST = 2;
+						const double PLK = 1000;
+						if (d < PLAST * PLAST) {
+							a.Velocity -= PLK * dv / d;
+						}
+					}
 				}
 			}
 
