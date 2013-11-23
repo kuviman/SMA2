@@ -29,6 +29,8 @@ namespace VitPro.SMA2 {
 			Draw.Scale(Size * 2);
 			Draw.Rotate(Rotation);
 			Draw.Align(0.5, 0.5);
+			double k = (1 - Health / MaxHealth) / 2;
+			Draw.Color(1, 1 - k, 1 - k);
 			texture.Render();
 			Draw.Load();
 		}
