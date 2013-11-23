@@ -56,7 +56,7 @@ namespace VitPro.SMA2 {
 			if (RemainingReloadTime > 0)
 				return;
 			pos = Position + (pos - Position).Unit * 100500;
-			World.Current.Add(new Lazer(Position, pos));
+			World.Current.Add(new Lazer(Position + (pos - Position).Unit * Size, pos));
 			RemainingReloadTime = ReloadTime;
 			const double damage = 100;
 			foreach (var a in World.Current.asteroids) {
