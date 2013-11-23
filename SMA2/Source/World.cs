@@ -127,6 +127,18 @@ namespace VitPro.SMA2 {
 							b.Velocity -= f;
 						}
 					}
+
+					foreach (var b in posGroup.Query(a.Position - new Vec2(d2, d2), a.Position + new Vec2(d2, d2))) {
+						if (!(b is Asteroid))
+							continue;
+						Vec2 dv = b.Position - a.Position;
+						double d = dv.SqrLength;
+						const double AST = 2;
+						const double ASTK = 100;
+						if (d < AST * AST) {
+							a.Velocity -= ASTK * dv / d;
+						}
+					}
 				}
 			}
 
