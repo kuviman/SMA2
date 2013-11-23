@@ -40,7 +40,16 @@ namespace VitPro.SMA2 {
 		const double maxTime = 0.2;
 
 		const double camSpeed = 5;
+
+		double dtK = 1;
+		const double dtkspeed = 10;
+		const double mindtk = 0.05;
 		public void Update(double dt) {
+
+			dt *= dtK;
+			if (!player.Alive) {
+				dtK = Math.Max(dtK - dtkspeed * dt, mindtk);
+			}
 
 			const double dist = 25;
 			PosGroup<SpaceObject> posGroup = new PosGroup<SpaceObject>(
