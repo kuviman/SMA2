@@ -43,7 +43,7 @@ namespace VitPro.SMA2 {
 				App.PushState(new Test());
 		}
 
-		static SystemFont font = new SystemFont("Courier New", 12, FontStyle.Bold);
+		static SystemFont font = new SystemFont("Courier New", 64, FontStyle.Bold);
 
 	}
 
