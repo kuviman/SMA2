@@ -8,6 +8,13 @@ namespace VitPro.SMA2 {
 
 		World world = new World();
 
+		public MainMenu() {
+			world.player.Health -= 100500;
+			for (int i = 0; i < 300; i++) {
+				world.Update(0.2);
+			}
+		}
+
 		public override void Update(double dt) {
 			base.Update(dt);
 			world.Update(dt);
