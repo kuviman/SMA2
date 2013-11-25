@@ -69,6 +69,7 @@ namespace VitPro.SMA2 {
 				Add(new Asteroid());
 			}
 			objects.Update(dt);
+			List<SpaceObject> newObjects = new List<SpaceObject>();
 			foreach (var a in objects) {
 				if (!a.Collideable)
 					continue;
@@ -87,6 +88,9 @@ namespace VitPro.SMA2 {
 					if (dv > 0)
 						continue;
 
+					const double K = 5;
+					newObjects.Add(new Dust(a.Position + dr * a.Size, Math.Min(a.Size, b.Size) * (-dv) / K));
+
 					const double DamageK = 5;
 					double damage = (-dv) * DamageK;
 					a.Health -= damage;
@@ -99,6 +103,8 @@ namespace VitPro.SMA2 {
 					a.Velocity += E * dv * dr;
 				}
 			}
+			foreach (var item in newObjects)
+				objects.Add(item);
 
 			foreach (var a in objects) {
 				if (a is Cloud) {
