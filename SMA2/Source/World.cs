@@ -44,7 +44,13 @@ namespace VitPro.SMA2 {
 		double dtK = 1;
 		const double dtkspeed = 10;
 		const double mindtk = 0.05;
+		double rSpeed = 0;
 		public void Update(double dt) {
+
+			if (!player.Alive) {
+				rSpeed = Math.Min(rSpeed + 0.01 * dt, 0.1);
+				cam.Rotation += rSpeed * dt;
+			}
 
 			dt *= dtK;
 			if (!player.Alive) {
@@ -183,11 +189,12 @@ namespace VitPro.SMA2 {
 			Draw.Translate(cam.Position);
 			Draw.Scale(30);
 			double aspect = (double)back.Width / back.Height;
+			Draw.Scale(2);
 			Draw.Scale(aspect, 1);
 			Draw.Align(0.5, 0.5);
 			const double k = 50;
 			Draw.Color(0.5, 0.5, 0.5, 1);
-			back.SubTexture(cam.Position.X / aspect / k, cam.Position.Y / k, 1, 1).Render();
+			back.SubTexture(cam.Position.X / aspect / k, cam.Position.Y / k, 2, 2).Render();
 			Draw.Load();
 
 			foreach (var o in objects) {
