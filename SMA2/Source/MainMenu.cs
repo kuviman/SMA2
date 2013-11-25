@@ -47,7 +47,7 @@ namespace VitPro.SMA2 {
 			if (key == Key.Number2)
 				Close();
 			else if (key == Key.Number1)
-				App.PushState(new Test());
+				StateManager.PushState(new Test());
 		}
 
 		static SystemFont font = new SystemFont("Courier New", 64, FontStyle.Bold);
