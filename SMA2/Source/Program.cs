@@ -80,6 +80,7 @@ namespace VitPro.SMA2 {
 			base.Render();
 
 			Draw.EndTexture();
+			tex.RemoveAlpha();
 
 			Draw.Save();
 			Draw.Scale(2);
