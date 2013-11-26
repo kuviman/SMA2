@@ -106,8 +106,16 @@ namespace VitPro.SMA2 {
 			Draw.Save();
 			new Camera(10).Apply();
 			buttons.Render();
+
+			Draw.Translate(new Vec2(0, 2) + Vec2.Rotate(Vec2.OrtX, App.Time) / 10);
+			Draw.Scale(8, 1.5);
+			Draw.Align(0.5, 0);
+			logo.Render();
+
 			Draw.Load();
 		}
+
+		Texture logo = new Texture("../Data/Logo.png");
 
 		public override void KeyDown(Key key) {
 			base.KeyDown(key);
