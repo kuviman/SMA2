@@ -28,12 +28,15 @@ namespace VitPro.SMA2 {
 			Draw.Save();
 			Draw.Scale(2);
 			Draw.Align(0.5, 0.5);
-			Draw.Color(0.5, 0.5, 0.5);
+			//Draw.Color(0.5, 0.5, 0.5);
 			tex.Render();
+			Draw.Color(1, 1, 1, 0.5);
+			Draw.Quad();
 			Draw.Load();
 			base.Render();
 
 			Draw.Save();
+			Draw.Color(0, 0, 0);
 			new Camera(10).Apply();
 			Draw.Translate(-5, 0);
 			font.Render("1 for new game");
