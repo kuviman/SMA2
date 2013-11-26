@@ -43,6 +43,33 @@ namespace VitPro.SMA2 {
 			Draw.Save();
 			Draw.Translate(Position);
 			Draw.Scale(Size * 2);
+
+			Draw.Save();
+			Draw.Scale(0.3);
+			Draw.Scale(1, 2);
+			Draw.Align(0.5, 0.7);
+			body.Render();
+			Draw.Load();
+
+			Draw.Save();
+			var mpos = World.Current.cam.FromWH(Mouse.Position, App.Width, App.Height);
+			double ang = (mpos - Position).Arg;
+			Draw.Translate(0, 0.2);
+			Draw.Scale(0.5);
+			if (mpos.X > Position.X) {
+				Draw.Rotate(ang / 2);
+				Draw.Align(0.5, 0.5);
+				head.Render();
+			} else {
+				if (ang < 0)
+					ang += 2 * Math.PI;
+				Draw.Rotate(ang / 2 - Math.PI / 2);
+				Draw.Scale(-1, 1);
+				Draw.Align(0.5, 0.5);
+				head.Render();
+			}
+			Draw.Load();
+
 			Draw.Rotate(Math.Sin(t) * SwingAngle + Velocity.X / Speed * MoveSwing);
 			Draw.Align(0.5, 0.5);
 			texture.Render();
@@ -66,6 +93,9 @@ namespace VitPro.SMA2 {
 					a.Health -= damage;
 			}
 		}
+
+		Texture body = new Texture("../Data/Body.png");
+		Texture head = new Texture("../Data/Head.png");
 	}
 
 }
