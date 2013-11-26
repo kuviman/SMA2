@@ -52,6 +52,8 @@ namespace VitPro.SMA2 {
 		}
 		double t = 1;
 
+		Texture cursor = new Texture("../Data/Cursor.png");
+
 		public override void Update(double dt) {
 			base.Update(dt);
 			t -= 5 * dt;
@@ -90,6 +92,14 @@ namespace VitPro.SMA2 {
 			}
 
 			Draw.Load();
+
+			var cam = new Camera(20);
+			Draw.Save();
+			cam.Apply();
+			Draw.Translate(cam.FromWH(Mouse.Position, Draw.Width, Draw.Height));
+			Draw.Align(0.5, 0.5);
+			cursor.Render();
+			Draw.Load();
 		}
 	}
 
@@ -98,6 +108,7 @@ namespace VitPro.SMA2 {
 #if !DEBUG
 			App.Fullscreen = true;
 #endif
+			Mouse.Visible = false;
 			App.Title = "SMA2";
 			App.Run(new MyManager(new MainMenu()));
 		}

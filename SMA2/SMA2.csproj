@@ -70,6 +70,7 @@
     <Content Include="Data\Back.png" />
     <Content Include="Data\Body.png" />
     <Content Include="Data\Cloud.png" />
+    <Content Include="Data\Cursor.png" />
     <Content Include="Data\Explosion.png" />
     <Content Include="Data\Gun.png" />
     <Content Include="Data\Head.png" />
