@@ -9,8 +9,8 @@ namespace VitPro.SMA2 {
 		const double Accel = 20;
 
 		const double SwingAngle = Math.PI / 40;
-		const double SwingSpeed = 4;
-		const double MoveSwing = Math.PI / 20;
+		const double SwingSpeed = 10;
+		const double MoveSwing = Math.PI / 10;
 
 		double t = 0;
 
