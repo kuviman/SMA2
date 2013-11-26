@@ -113,7 +113,10 @@ namespace VitPro.SMA2 {
 			base.KeyDown(key);
 		}
 
-		static SystemFont font = new SystemFont("Courier New", 64, FontStyle.Bold);
+		static Font font = new Font("../Data/font.TTF", 32);
+		static MainMenu() {
+			font.Smooth = false;
+		}
 
 	}
 
