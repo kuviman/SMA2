@@ -70,6 +70,13 @@ namespace VitPro.SMA2 {
 			}
 			Draw.Load();
 
+			Draw.Save();
+			Draw.Rotate((mpos - Position).Arg);
+			Draw.Scale(0.2);
+			Draw.Align(-2.5, 0.5);
+			gun.Render();
+			Draw.Load();
+
 			Draw.Rotate(Math.Sin(t) * SwingAngle + Velocity.X / Speed * MoveSwing);
 			Draw.Align(0.5, 0.5);
 			texture.Render();
@@ -96,6 +103,7 @@ namespace VitPro.SMA2 {
 
 		Texture body = new Texture("../Data/Body.png");
 		Texture head = new Texture("../Data/Head.png");
+		Texture gun = new Texture("../Data/Gun.png");
 	}
 
 }
