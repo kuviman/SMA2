@@ -23,7 +23,7 @@ namespace VitPro.SMA2 {
 		}
 
 
-		static SystemFont font = new SystemFont("Courier New", 32, FontStyle.Bold);
+		static Font font = new Font("../Data/font.TTF", 32);
 		public override void Render() {
 			base.Render();
 			Draw.Clear(Color.Black);
@@ -31,11 +31,31 @@ namespace VitPro.SMA2 {
 
 			Draw.Save();
 			new Camera(10).Apply();
-			Draw.Translate(-5, -5);
-			var text = string.Format("HEALTH : {0:000}", (int)world.player.Health);
-			Draw.Rect(0, 0, font.Measure(text), 1, new Color(1, 1, 1, 0.5));
-			Draw.Color(Color.Red);
-			font.Render(text);
+			Draw.Translate(0, -4);
+			Draw.Scale(0.5);
+			const double w = 5;
+			const double h = 0.6;
+			const double width = 0.1;
+			Draw.Rect(-w, -h, w, h, new Color(1, 1, 1, 0.3));
+			Draw.Line(new Vec2(-w, -h), new Vec2(-w, h), width);
+			Draw.Line(new Vec2(w, -h), new Vec2(w, h), width);
+			Draw.Line(new Vec2(-w, -h), new Vec2(w, -h), width);
+			Draw.Line(new Vec2(-w, h), new Vec2(w, h), width);
+
+			const double cnt = 20;
+			const double h2 = 0.4;
+			const double width2 = 0.3;
+			for (int i = 0; i < cnt; i++) {
+				Draw.Save();
+				Draw.Translate(-w + (i + 1) * (2 * w / (cnt + 1)), 0);
+				if (world.player.Health < (i + 1) * world.player.MaxHealth / cnt)
+					Draw.Color(1, 0, 0);
+				else
+					Draw.Color(0, 1, 0);
+				Draw.Line(new Vec2(0, -h2), new Vec2(0, h2), width2);
+				Draw.Load();
+			}
+
 			Draw.Load();
 		}
 
