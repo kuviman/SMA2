@@ -20,6 +20,7 @@ namespace VitPro.SMA2 {
 		}
 
 		public override void Update(double dt) {
+			Weapon.Owner = this;
 			base.Update(dt);
 			t += SwingSpeed * dt;
 			double vx = 0, vy = 0;
@@ -33,12 +34,16 @@ namespace VitPro.SMA2 {
 				vy -= 1;
 			var targetVel = new Vec2(vx, vy).Unit * Speed;
 			Velocity += Vec2.Clamp(targetVel - Velocity, Accel * dt);
-			RemainingReloadTime -= dt;
+			Weapon.Update(dt);
 		}
+
+		public Weapon Weapon = new Weapon();
+		Texture gun = new Texture("../Data/Gun.png");
 
 		static Texture texture = new Texture("../Data/Player.png");
 
 		public override void Render() {
+			Weapon.Owner = this;
 			base.Render();
 			Draw.Save();
 			Draw.Translate(Position);
@@ -83,27 +88,8 @@ namespace VitPro.SMA2 {
 			Draw.Load();
 		}
 
-		public double RemainingReloadTime = 0;
-		public double ReloadTime = 0.5;
-
-		public void Shoot(Vec2 pos) {
-			if (RemainingReloadTime > 0)
-				return;
-			pos = Position + (pos - Position).Unit * 100500;
-			World.Current.Add(new Lazer(Position + (pos - Position).Unit * Size, pos));
-			RemainingReloadTime = ReloadTime;
-			const double damage = 100;
-			foreach (var a in World.Current.asteroids) {
-				if ((a.Position - this.Position) * (pos - Position) < 0)
-					continue;
-				if (Math.Abs((a.Position - this.Position) ^ (pos - Position).Unit) < a.Size)
-					a.Health -= damage;
-			}
-		}
-
 		Texture body = new Texture("../Data/Body.png");
 		Texture head = new Texture("../Data/Head.png");
-		Texture gun = new Texture("../Data/Gun.png");
 	}
 
 }

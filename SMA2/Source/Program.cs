@@ -61,7 +61,7 @@ namespace VitPro.SMA2 {
 
 		public override void MouseDown(MouseButton button, Vec2 pos) {
 			base.MouseDown(button, pos);
-			world.player.Shoot(world.cam.FromWH(pos, App.Width, App.Height));
+			world.player.Weapon.Shoot(world.cam.FromWH(pos, App.Width, App.Height));
 		}
 
 	}
