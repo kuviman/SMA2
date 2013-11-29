@@ -82,7 +82,7 @@ namespace VitPro.SMA2 {
 			gun.Render();
 			Draw.Load();
 
-			Draw.Rotate(Math.Sin(t) * SwingAngle + Velocity.X / Speed * MoveSwing);
+			Draw.Rotate(Math.Sin(t) * SwingAngle - Velocity.X / Speed * MoveSwing);
 			Draw.Align(0.5, 0.5);
 			texture.Render();
 			Draw.Load();
