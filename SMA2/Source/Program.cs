@@ -32,7 +32,22 @@ namespace VitPro.SMA2 {
 			Draw.Save();
 			new Camera(10).Apply();
 
+			RenderScore();
 			RenderHealth();
+
+			Draw.Load();
+		}
+
+		void RenderScore() {
+			Draw.Save();
+
+			Draw.Translate(-4, 4);
+			Draw.Scale(0.5);
+
+			var text = string.Format("SCORE : {0}", world.Score);
+
+			Draw.Rect(0, 0, font.Measure(text), 1, new Color(0, 0, 0, 0.5));
+			font.Render(text);
 
 			Draw.Load();
 		}

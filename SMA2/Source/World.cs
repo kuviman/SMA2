@@ -227,6 +227,8 @@ namespace VitPro.SMA2 {
 		internal void Add(SpaceObject o) {
 			objects.Add(o);
 		}
+
+		public int Score = 0;
 	}
 
 }
