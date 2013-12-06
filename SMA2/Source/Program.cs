@@ -23,7 +23,7 @@ namespace VitPro.SMA2 {
 		}
 
 
-		static Font font = new Font("../Data/font.TTF", 32);
+		public static Font font = new Font("../Data/font.TTF", 32);
 		public override void Render() {
 			base.Render();
 			Draw.Clear(Color.Black);

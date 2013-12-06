@@ -13,7 +13,7 @@ namespace VitPro.SMA2 {
 
 		public Player player = new Player();
 
-		HashSet<SpaceObject> objects = new HashSet<SpaceObject>();
+		Group<SpaceObject> objects = new Group<SpaceObject>();
 
 		public static World Current = null;
 
@@ -46,7 +46,7 @@ namespace VitPro.SMA2 {
 		const double mindtk = 0.05;
 		double rSpeed = 0;
 		public void Update(double dt) {
-
+			objects.Refresh();
 			if (!player.Alive) {
 				rSpeed = Math.Min(rSpeed + 0.01 * dt, 0.1);
 				cam.Rotation += rSpeed * dt;
@@ -171,13 +171,14 @@ namespace VitPro.SMA2 {
 				cloud.Velocity = Vec2.Clamp(cloud.Velocity, CLOUDSPEED);
 			}
 
-			objects.RemoveWhere(a => !(a is Cloud) && (a.Position - player.Position).Length > AsteroidDespawnDistance);
 			foreach (var o in new List<SpaceObject>(objects.Where(a => !a.Alive))) {
 				if (!o.Collideable)
 					continue;
 				Add(new Explosion(o.Position, o.Size * 1.5));
 			}
-			objects.RemoveWhere(a => !a.Alive);
+			foreach (var o in objects.Where(a =>
+				(!(a is Cloud) && (a.Position - player.Position).Length > AsteroidDespawnDistance) || !a.Alive))
+				objects.Remove(o);
 		}
 
 		public void Render() {

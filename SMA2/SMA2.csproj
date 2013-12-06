@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Source\Asteroid.cs" />
     <Compile Include="Source\Cloud.cs" />
+    <Compile Include="Source\ScoreEff.cs" />
     <Compile Include="Source\Dust.cs" />
     <Compile Include="Source\Lazer.cs" />
     <Compile Include="Source\Explosion.cs" />
