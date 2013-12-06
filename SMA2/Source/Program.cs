@@ -36,6 +36,16 @@ namespace VitPro.SMA2 {
 			RenderHealth();
 
 			Draw.Load();
+            if (!world.player.Alive)
+            {
+                new Camera(12).Apply();
+                Draw.Save();
+                Draw.Scale(1);
+                Draw.Translate(new Vec2(-5, 0));
+                Draw.Align(0.5, 0.5);
+                font.Render("YOUR PENIS FELL OFF");
+                Draw.Load();
+            }
 		}
 
 		void RenderScore() {
