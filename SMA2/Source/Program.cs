@@ -31,6 +31,14 @@ namespace VitPro.SMA2 {
 
 			Draw.Save();
 			new Camera(10).Apply();
+
+			RenderHealth();
+
+			Draw.Load();
+		}
+
+		void RenderHealth() {
+			Draw.Save();
 			Draw.Translate(0, -4);
 			Draw.Scale(0.5);
 			const double w = 5;
@@ -55,7 +63,6 @@ namespace VitPro.SMA2 {
 				Draw.Line(new Vec2(0, -h2), new Vec2(0, h2), width2);
 				Draw.Load();
 			}
-
 			Draw.Load();
 		}
 
