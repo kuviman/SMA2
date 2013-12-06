@@ -24,8 +24,11 @@ namespace VitPro.SMA2 {
 			foreach (var a in World.Current.asteroids) {
 				if ((a.Position - Owner.Position) * (pos - Owner.Position) < 0)
 					continue;
-				if (Math.Abs((a.Position - Owner.Position) ^ (pos - Owner.Position).Unit) < a.Size)
+				if (Math.Abs((a.Position - Owner.Position) ^ (pos - Owner.Position).Unit) < a.Size) {
 					a.Health -= damage;
+					if (!a.Alive)
+						World.Current.Score++;
+				}
 			}
 		}
 
