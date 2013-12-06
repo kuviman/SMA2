@@ -80,6 +80,10 @@ namespace VitPro.SMA2 {
 			Draw.Scale(0.2);
 			Draw.Align(-2.5, 0.5);
 			gun.Render();
+			var k = Math.Max(Weapon.RemainingReloadTime / Weapon.ReloadTime, 0);
+			k = Math.Pow(k, 0.5) / 2;
+			var color = new Color(0.8, 0.8, 1, k);
+			Draw.Circle(0.25, 0.5, 0.75, color);
 			Draw.Load();
 
 			Draw.Rotate(Math.Sin(t) * SwingAngle - Velocity.X / Speed * MoveSwing);
