@@ -25,6 +25,7 @@ namespace VitPro.SMA2 {
 			Draw.Save();
 			Draw.Translate(Position);
 			Draw.Scale(Size * 2);
+			Draw.Rotate(World.Current.cam.Rotation);
 			Draw.Align(0.5, 0.5);
 			Draw.Color(1, 1, 0, Math.Pow(Health / MaxHealth, 0.5));
 			Test.font.Render("+1");
