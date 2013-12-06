@@ -98,15 +98,15 @@ namespace VitPro.SMA2 {
 					newObjects.Add(new Dust(a.Position + dr * a.Size, Math.Min(a.Size, b.Size) * (-dv) / K));
 
 					const double DamageK = 5;
-					double damage = (-dv) * DamageK;
-					a.Health -= damage;
-					b.Health -= damage;
+					double damage = 2 * (-dv) * DamageK / (a.Mass + b.Mass);
+					a.Health -= damage * b.Mass;
+					b.Health -= damage * a.Mass;
 
 					b.Position += dr * pen / 2;
 					a.Position -= dr * pen / 2;
-					const double E = 1;
-					b.Velocity -= E * dv * dr;
-					a.Velocity += E * dv * dr;
+					double E = 2 / (a.Mass + b.Mass);
+					b.Velocity -= E * a.Mass * dv * dr;
+					a.Velocity += E * b.Mass * dv * dr;
 				}
 			}
 			foreach (var item in newObjects)

@@ -29,6 +29,8 @@ namespace VitPro.SMA2 {
 		public virtual void Update(double dt) {
 			Position += Velocity * dt;
 		}
+
+		public double Mass { get { return Math.PI * GMath.Sqr(Size); } }
 	}
 
 }
