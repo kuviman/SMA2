@@ -20,7 +20,8 @@ namespace VitPro.SMA2 {
 		}
 
 		public override void Update(double dt) {
-			Weapon.Owner = this;
+			Weapon1.Owner = this;
+			Weapon2.Owner = this;
 			base.Update(dt);
 			t += SwingSpeed * dt;
 			double vx = 0, vy = 0;
@@ -33,19 +34,23 @@ namespace VitPro.SMA2 {
 			if (Key.S.Pressed())
 				vy -= 1;
 			if (MouseButton.Left.Pressed())
-				Weapon.Shoot(World.Current.cam.FromWH(Mouse.Position, App.Width, App.Height));
+				Weapon1.Shoot(World.Current.cam.FromWH(Mouse.Position, App.Width, App.Height));
+			if (MouseButton.Right.Pressed())
+				Weapon2.Shoot(World.Current.cam.FromWH(Mouse.Position, App.Width, App.Height));
 			var targetVel = new Vec2(vx, vy).Unit * Speed;
 			Velocity += Vec2.Clamp(targetVel - Velocity, Accel * dt);
-			Weapon.Update(dt);
+			Weapon2.Update(dt);
+			Weapon1.Update(dt);
 		}
 
-		public Weapon Weapon = new MachineGun();
+		public Weapon Weapon1 = new MachineGun();
+		public Weapon Weapon2 = new LazerGun();
 		Texture gun = new Texture("../Data/Gun.png");
 
 		static Texture texture = new Texture("../Data/Player.png");
 
 		public override void Render() {
-			Weapon.Owner = this;
+			Weapon2.Owner = this;
 			base.Render();
 			Draw.Save();
 			Draw.Translate(Position);
@@ -82,7 +87,7 @@ namespace VitPro.SMA2 {
 			Draw.Scale(0.2);
 			Draw.Align(-2.5, 0.5);
 			gun.Render();
-			var k = Math.Max(Weapon.RemainingReloadTime / Weapon.ReloadTime, 0);
+			var k = Math.Max(Weapon2.RemainingReloadTime / Weapon2.ReloadTime, 0);
 			k = Math.Pow(k, 0.5) / 2;
 			var color = new Color(0.8, 0.8, 1, k);
 			Draw.Circle(0.25, 0.5, 0.75, color);
