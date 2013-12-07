@@ -54,6 +54,7 @@ namespace VitPro.SMA2 {
 		World world = new World();
 
 		public MainMenu() {
+			world.curTime = 100500;
 			world.player.Health -= 100500;
 			for (int i = 0; i < 300; i++) {
 				world.Update(0.2);

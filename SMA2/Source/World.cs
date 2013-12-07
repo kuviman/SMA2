@@ -36,8 +36,8 @@ namespace VitPro.SMA2 {
 
 		double timeTillNextAsteroid = 0;
 		const double AsteroidDespawnDistance = 25;
-		const double minTime = 0.05;
-		const double maxTime = 0.2;
+		double minTime { get { return 1 / (curTime + 1); } }
+		double maxTime { get { return minTime * 2; } }
 
 		const double camSpeed = 5;
 
@@ -45,6 +45,9 @@ namespace VitPro.SMA2 {
 		const double dtkspeed = 10;
 		const double mindtk = 0.05;
 		double rSpeed = 0;
+
+		public double curTime = 0;
+
 		public void Update(double dt) {
 			objects.Refresh();
 			if (!player.Alive) {
@@ -56,6 +59,8 @@ namespace VitPro.SMA2 {
 			if (!player.Alive) {
 				dtK = Math.Max(dtK - dtkspeed * dt, mindtk);
 			}
+
+			curTime += dt;
 
 			const double dist = 25;
 			PosGroup<SpaceObject> posGroup = new PosGroup<SpaceObject>(
