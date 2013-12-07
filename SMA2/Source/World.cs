@@ -83,6 +83,26 @@ namespace VitPro.SMA2 {
 			}
 			objects.Update(dt);
 			List<SpaceObject> newObjects = new List<SpaceObject>();
+
+			foreach (var bb in objects) {
+				var b = bb as Bullet;
+				if (b == null)
+					continue;
+				double d2 = maxSize;
+				foreach (var a in posGroup.Query(b.Position - new Vec2(d2, d2), b.Position + new Vec2(d2, d2))
+					.Where(o => o.Collideable)) {
+						if (a is Player)
+							continue;
+						if ((a.Position - b.Position).SqrLength > GMath.Sqr(a.Size))
+							continue;
+					const double speedK = 0.01;
+					const double damage = 10;
+					a.Velocity += speedK * b.Velocity / a.Mass;
+					a.Health -= damage;
+					b.Health -= 100500;
+				}
+			}
+
 			foreach (var a in objects) {
 				if (!a.Collideable)
 					continue;
