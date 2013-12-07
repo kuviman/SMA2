@@ -48,6 +48,8 @@ namespace VitPro.SMA2 {
 
 		public double curTime = 0;
 
+		const int AsteroidsCap = 100;
+
 		public void Update(double dt) {
 			objects.Refresh();
 			if (!player.Alive) {
@@ -75,7 +77,7 @@ namespace VitPro.SMA2 {
 			cam.Position += (player.Position - cam.Position) * Math.Min(dt * camSpeed, 1);
 			Current = this;
 			timeTillNextAsteroid -= dt;
-			if (timeTillNextAsteroid < 0) {
+			if (timeTillNextAsteroid < 0 && objects.Count(o => o is Asteroid) < AsteroidsCap) {
 				timeTillNextAsteroid = GRandom.NextDouble(minTime, maxTime);
 				Add(new Asteroid());
 			}
