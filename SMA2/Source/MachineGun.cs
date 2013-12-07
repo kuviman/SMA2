@@ -10,6 +10,7 @@ namespace VitPro.SMA2 {
 			const double minspeed = 3, maxspeed = 5;
 			dust.Velocity = (pos - Owner.Position).Unit * GRandom.NextDouble(minspeed, maxspeed);
 			World.Current.Add(dust);
+			World.Current.Add(new Bullet(dust.Position, pos));
 		}
 	}
 
