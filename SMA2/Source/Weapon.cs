@@ -21,6 +21,7 @@ namespace VitPro.SMA2 {
 		public void Shoot(Vec2 pos) {
 			if (RemainingReloadTime > 0)
 				return;
+			RemainingReloadTime = ReloadTime;
 			DoShoot(pos);
 		}
 
