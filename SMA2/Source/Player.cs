@@ -32,6 +32,8 @@ namespace VitPro.SMA2 {
 				vy += 1;
 			if (Key.S.Pressed())
 				vy -= 1;
+			if (MouseButton.Left.Pressed())
+				Weapon.Shoot(World.Current.cam.FromWH(Mouse.Position, App.Width, App.Height));
 			var targetVel = new Vec2(vx, vy).Unit * Speed;
 			Velocity += Vec2.Clamp(targetVel - Velocity, Accel * dt);
 			Weapon.Update(dt);
