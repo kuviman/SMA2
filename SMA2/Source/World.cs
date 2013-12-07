@@ -100,6 +100,10 @@ namespace VitPro.SMA2 {
 					a.Velocity += speedK * b.Velocity / a.Mass;
 					a.Health -= damage;
 					b.Health -= 100500;
+					if (!a.Alive) {
+						World.Current.Score++;
+						World.Current.Add(new ScoreEff(a.Position, 0.5));
+					}
 				}
 			}
 
