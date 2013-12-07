@@ -1,6 +1,6 @@
 # README
 
-## TODO list
+#### TODO list
 
-- [ ] add aliens
-- [ ] ???
+* add aliens
+* ~~???~~
