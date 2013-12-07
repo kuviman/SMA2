@@ -39,7 +39,7 @@ namespace VitPro.SMA2 {
 			Weapon.Update(dt);
 		}
 
-		public Weapon Weapon = new Weapon();
+		public Weapon Weapon = new LazerGun();
 		Texture gun = new Texture("../Data/Gun.png");
 
 		static Texture texture = new Texture("../Data/Player.png");
