@@ -6,7 +6,10 @@ namespace VitPro.SMA2 {
 	class LazerGun : Weapon {
 		public LazerGun() : base(0.5) { }
 
+		static Sound snd = new Sound("../Data/lazer.wav");
+
 		protected override void DoShoot(Vec2 pos) {
+			snd.Play();
 			pos = Owner.Position + (pos - Owner.Position).Unit * 100500;
 			World.Current.Add(new Lazer(Owner.Position + (pos - Owner.Position).Unit * Owner.Size, pos));
 			const double damage = 100;

@@ -79,7 +79,9 @@
     <Content Include="Data\Explosion.png" />
     <Content Include="Data\Gun.png" />
     <Content Include="Data\Head.png" />
+    <Content Include="Data\lazer.wav" />
     <Content Include="Data\Logo.png" />
+    <Content Include="Data\machinegun.wav" />
     <Content Include="Data\Player.png" />
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,11 @@ namespace VitPro.SMA2 {
 
 	class MachineGun : Weapon {
 		public MachineGun() : base(0.1) { }
+
+		static Sound snd = new Sound("../Data/machinegun.wav");
+
 		protected override void DoShoot(Vec2 pos) {
+			snd.Play();
 			const double acc = 0.1;
 			var dir = Vec2.Rotate((pos - Owner.Position).Unit, GRandom.NextDouble(-acc, acc));
 			pos = Owner.Position + dir * 100500;
