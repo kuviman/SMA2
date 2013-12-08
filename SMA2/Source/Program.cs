@@ -81,7 +81,7 @@ namespace VitPro.SMA2 {
 			for (int i = 0; i < cnt; i++) {
 				Draw.Save();
 				Draw.Translate(-w + (i + 1) * (2 * w / (cnt + 1)), 0);
-				if (world.player.Health < (i + 1) * world.player.MaxHealth / cnt)
+				if (world.player.Health.Value < (i + 1) * world.player.Health.MaxValue / cnt)
 					Draw.Color(1, 0, 0);
 				else
 					Draw.Color(0, 1, 0);

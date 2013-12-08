@@ -6,7 +6,7 @@ namespace VitPro.SMA2 {
 	class Explosion : SpaceObject {
 
 		public Explosion(Vec2 pos, double size) {
-			Health = MaxHealth = 0.15;
+			Health = new Health(0.15);
 			Position = pos;
 			Size = size;
 			Collideable = false;
@@ -19,7 +19,7 @@ namespace VitPro.SMA2 {
 		const double SwapTime = 0.05;
 
 		public override void Update(double dt) {
-			Health -= dt;
+			Health.Value -= dt;
 			base.Update(dt);
 			Size *= (1 + GrowSpeed * dt);
 			swapT -= dt;
@@ -38,7 +38,7 @@ namespace VitPro.SMA2 {
 			Draw.Scale(Size * 2);
 			Draw.Rotate(Rotation);
 			Draw.Align(0.5, 0.5);
-			Draw.Color(1, 1, 1, Health / MaxHealth);
+			Draw.Color(1, 1, 1, Health.Percentage);
 			tex.Render();
 			Draw.Load();
 		}

@@ -5,7 +5,13 @@ namespace VitPro.SMA2 {
 
 	partial class SpaceObject {
 
-		public bool Alive { get { return Health > 0; } }
+		public bool Alive {
+			get {
+				if (Health == null)
+					return true;
+				return Health.Value > 0;
+			}
+		}
 
 	}
 

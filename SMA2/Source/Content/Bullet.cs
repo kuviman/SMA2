@@ -10,7 +10,7 @@ namespace VitPro.SMA2 {
 		const double Speed = 50;
 
 		public Bullet(Vec2 pos, Vec2 p2) {
-			Health = MaxHealth = 0.5;
+			Health = new Health(0.5);
 			Position = pos;
 			this.p2 = p2;
 			Collideable = false;
@@ -18,7 +18,7 @@ namespace VitPro.SMA2 {
 		}
 
 		public override void Update(double dt) {
-			Health -= dt;
+			Health.Value -= dt;
 			base.Update(dt);
 		}
 

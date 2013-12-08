@@ -16,7 +16,7 @@ namespace VitPro.SMA2 {
 		const double minSize = 0.7, maxSize = 1.5;
 
 		public Asteroid() {
-			Health = MaxHealth = 50;
+			Health = new Health(50);
 			Position = Vec2.Rotate(Vec2.OrtX, GRandom.NextDouble(0, 2 * Math.PI)) * InitDistance;
 			const double spot = Math.PI / 6;
 			Velocity = Vec2.Rotate(Vec2.OrtX, Math.PI + Position.Arg + GRandom.NextDouble(-spot, spot)) * Speed;
@@ -32,7 +32,7 @@ namespace VitPro.SMA2 {
 			Draw.Scale(Size * 2);
 			Draw.Rotate(Rotation);
 			Draw.Align(0.5, 0.5);
-			double k = (1 - Health / MaxHealth) / 2;
+			double k = (1 - Health.Percentage) / 2;
 			Draw.Color(1, 1 - k, 1 - k);
 			texture.Render();
 			Draw.Load();

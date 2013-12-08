@@ -17,7 +17,7 @@ namespace VitPro.SMA2 {
 				if ((a.Position - Owner.Position) * (pos - Owner.Position) < 0)
 					continue;
 				if (Math.Abs((a.Position - Owner.Position) ^ (pos - Owner.Position).Unit) < a.Size) {
-					a.Health -= damage;
+					a.Health.Value -= damage;
 					if (!a.Alive) {
 						World.Current.Score++;
 						World.Current.Add(new ScoreEff(a.Position, 0.5));

@@ -100,8 +100,8 @@ namespace VitPro.SMA2 {
 					const double speedK = 0.05;
 					const double damage = 10;
 					a.Velocity += speedK * b.Velocity / a.Mass;
-					a.Health -= damage;
-					b.Health -= 100500;
+					a.Health.Value -= damage;
+					b.Health.Value -= 100500;
 					if (!a.Alive) {
 						World.Current.Score++;
 						World.Current.Add(new ScoreEff(a.Position, 0.5));
@@ -132,8 +132,8 @@ namespace VitPro.SMA2 {
 
 					const double DamageK = 5;
 					double damage = 2 * (-dv) * DamageK / (a.Mass + b.Mass);
-					a.Health -= damage * b.Mass;
-					b.Health -= damage * a.Mass;
+					a.Health.Value -= damage * b.Mass;
+					b.Health.Value -= damage * a.Mass;
 
 					b.Position += dr * pen / 2;
 					a.Position -= dr * pen / 2;

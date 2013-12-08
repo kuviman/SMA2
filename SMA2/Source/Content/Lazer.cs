@@ -10,7 +10,7 @@ namespace VitPro.SMA2 {
 		const double Speed = 50;
 
 		public Lazer(Vec2 pos, Vec2 p2) {
-			Health = MaxHealth = 0.2;
+			Health = new Health(0.2);
 			Position = pos;
 			this.p2 = p2;
 			Collideable = false;
@@ -21,7 +21,7 @@ namespace VitPro.SMA2 {
 		const double swapTime = 0.05;
 
 		public override void Update(double dt) {
-			Health -= dt;
+			Health.Value -= dt;
 			base.Update(dt);
 			swapT -= dt;
 			if (swapT < 0) {
@@ -49,7 +49,7 @@ namespace VitPro.SMA2 {
 		public override void Render() {
 			base.Render();
 			Draw.Save();
-			Draw.Color(1, 1, 1, Math.Pow(Health / MaxHealth, 0.5));
+			Draw.Color(1, 1, 1, Math.Pow(Health.Percentage, 0.5));
 			Draw.Line(Position, p2, 0.1);
 			for (int i = 0; i < segs - 1; i++) {
 				Draw.Line(ps[i], ps[i + 1], 0.075, new Color(0.5, 0.5, 1, 0.7));

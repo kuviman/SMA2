@@ -47,25 +47,25 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\Asteroid.cs" />
-    <Compile Include="Source\Cloud.cs" />
-    <Compile Include="Source\Bullet.cs" />
+    <Compile Include="Source\Content\Asteroid.cs" />
+    <Compile Include="Source\Content\Cloud.cs" />
+    <Compile Include="Source\Content\Bullet.cs" />
     <Compile Include="Source\Core\SpaceObject\Alive.cs" />
     <Compile Include="Source\Core\SpaceObject\Collision.cs" />
     <Compile Include="Source\Core\SpaceObject\Movement.cs" />
     <Compile Include="Source\Core\SpaceObject\Health.cs" />
-    <Compile Include="Source\LazerGun.cs" />
-    <Compile Include="Source\MachineGun.cs" />
-    <Compile Include="Source\ScoreEff.cs" />
-    <Compile Include="Source\Dust.cs" />
-    <Compile Include="Source\Lazer.cs" />
-    <Compile Include="Source\Explosion.cs" />
+    <Compile Include="Source\Content\LazerGun.cs" />
+    <Compile Include="Source\Content\MachineGun.cs" />
+    <Compile Include="Source\Content\ScoreEff.cs" />
+    <Compile Include="Source\Content\Dust.cs" />
+    <Compile Include="Source\Content\Lazer.cs" />
+    <Compile Include="Source\Content\Explosion.cs" />
     <Compile Include="Source\MainMenu.cs" />
-    <Compile Include="Source\Player.cs" />
+    <Compile Include="Source\Content\Player.cs" />
     <Compile Include="Source\Program.cs" />
     <Compile Include="Source\Core\SpaceObject\_DefSpaceObject.cs" />
-    <Compile Include="Source\Weapon.cs" />
-    <Compile Include="Source\World.cs" />
+    <Compile Include="Source\Core\Weapon.cs" />
+    <Compile Include="Source\Core\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dependencies\VPE\VPE\VPE.csproj">
