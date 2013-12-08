@@ -7,10 +7,17 @@ namespace VitPro.SMA2 {
 
 		public double MaxValue;
 
+		public event Action OnEmptied;
+
 		double _val;
 		public double Value {
 			get { return _val; }
-			set { _val = Math.Min(Math.Max(value, 0), MaxValue); }
+			set {
+				bool hadHealth = _val > 0;
+				_val = Math.Min(Math.Max(value, 0), MaxValue);
+				if (hadHealth && _val == 0)
+					OnEmptied.Apply();
+			}
 		}
 
 		public double Percentage {
