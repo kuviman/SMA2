@@ -32,7 +32,17 @@ namespace VitPro.SMA2 {
 
 	partial class SpaceObject {
 
-		public Health Health = null;
+		Health _health = null;
+		public Health Health {
+			get { return _health; }
+			set {
+				if (_health != null)
+					_health.OnEmptied -= Kill;
+				_health = value;
+				if (_health != null)
+					_health.OnEmptied += Kill;
+			}
+		}
 
 	}
 
