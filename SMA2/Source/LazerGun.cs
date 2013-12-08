@@ -4,7 +4,7 @@ using VitPro.Engine;
 namespace VitPro.SMA2 {
 
 	class LazerGun : Weapon {
-		public LazerGun() : base(0.5) { }
+		public LazerGun() : base(2.5) { }
 
 		static Sound snd = new Sound("../Data/lazer.wav");
 
