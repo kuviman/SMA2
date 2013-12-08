@@ -58,6 +58,9 @@ namespace VitPro.SMA2 {
 			UpdateClouds(dt);
 			UpdateExplosions(dt);
 			UpdatePhysics(dt);
+
+			foreach (var o in objects.Where(o => !o.Alive))
+				objects.Remove(o);
 		}
 
 		public int Score = 0;

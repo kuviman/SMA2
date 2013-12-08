@@ -20,7 +20,7 @@ namespace VitPro.SMA2 {
 			}
 
 			foreach (var o in objects.Where(a =>
-				(!(a is Asteroid) && (a.Position - player.Position).Length > AsteroidDespawnDistance) || !a.Alive))
+				!(a is Asteroid) && (a.Position - player.Position).Length > AsteroidDespawnDistance))
 				objects.Remove(o);
 		}
 
