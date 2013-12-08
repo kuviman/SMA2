@@ -5,13 +5,19 @@ namespace VitPro.SMA2 {
 
 	abstract partial class SpaceObject : IRenderable, IUpdateable {
 
-		public SpaceObject() { }
-
-		public virtual void Update(double dt) {
-			UpdateMovement(dt);
+		public SpaceObject() {
+			OnUpdate += UpdateMovement;
 		}
 
-		public virtual void Render() { }
+		public event Action<double> OnUpdate;
+		public virtual void Update(double dt) {
+			OnUpdate.Apply(dt);
+		}
+
+		public event Action OnRender;
+		public virtual void Render() {
+			OnRender.Apply();
+		}
 
 		public World World { get; internal set; }
 
