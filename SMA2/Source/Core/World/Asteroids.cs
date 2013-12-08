@@ -18,6 +18,10 @@ namespace VitPro.SMA2 {
 				timeTillNextAsteroid = GRandom.NextDouble(minTime, maxTime);
 				Add(new Asteroid());
 			}
+
+			foreach (var o in objects.Where(a =>
+				(!(a is Asteroid) && (a.Position - player.Position).Length > AsteroidDespawnDistance) || !a.Alive))
+				objects.Remove(o);
 		}
 
 	}

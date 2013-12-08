@@ -58,10 +58,6 @@ namespace VitPro.SMA2 {
 			UpdateClouds(dt);
 			UpdateExplosions(dt);
 			UpdatePhysics(dt);
-
-			foreach (var o in objects.Where(a =>
-				(!(a is Cloud) && (a.Position - player.Position).Length > AsteroidDespawnDistance) || !a.Alive))
-				objects.Remove(o);
 		}
 
 		public int Score = 0;
