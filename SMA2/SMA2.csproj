@@ -60,12 +60,19 @@
     <Compile Include="Source\Content\Dust.cs" />
     <Compile Include="Source\Content\Lazer.cs" />
     <Compile Include="Source\Content\Explosion.cs" />
+    <Compile Include="Source\Core\World\Bullets.cs" />
+    <Compile Include="Source\Core\World\Clouds.cs" />
+    <Compile Include="Source\Core\World\Asteroids.cs" />
+    <Compile Include="Source\Core\World\Render.cs" />
+    <Compile Include="Source\Core\World\Explosions.cs" />
+    <Compile Include="Source\Core\World\Objects.cs" />
+    <Compile Include="Source\Core\World\Physics.cs" />
     <Compile Include="Source\MainMenu.cs" />
     <Compile Include="Source\Content\Player.cs" />
     <Compile Include="Source\Program.cs" />
     <Compile Include="Source\Core\SpaceObject\_DefSpaceObject.cs" />
     <Compile Include="Source\Core\Weapon.cs" />
-    <Compile Include="Source\Core\World.cs" />
+    <Compile Include="Source\Core\World\_DefWorld.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dependencies\VPE\VPE\VPE.csproj">
