@@ -15,7 +15,6 @@ namespace VitPro.SMA2 {
 		public Cloud() {
 			Position = new Vec2(GRandom.NextDouble(-dist, dist), GRandom.NextDouble(-dist, dist));
 			Size = 0.7;
-			Collideable = false;
 		}
 
 		public override void Render() {

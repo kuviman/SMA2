@@ -21,6 +21,8 @@ namespace VitPro.SMA2 {
 
 		public World World { get; internal set; }
 
+		public double Size = 1;
+
 	}
 
 }

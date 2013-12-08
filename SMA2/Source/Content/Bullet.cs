@@ -13,7 +13,6 @@ namespace VitPro.SMA2 {
 			Health = new Health(0.5);
 			Position = pos;
 			this.p2 = p2;
-			Collideable = false;
 			Velocity = Direction * Speed;
 		}
 

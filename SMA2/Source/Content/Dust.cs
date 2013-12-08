@@ -12,7 +12,6 @@ namespace VitPro.SMA2 {
 			Position = pos;
 			Size = size * initk;
 			GrowSpeed *= size;
-			Collideable = false;
 			for (int i = 0; i < 5; i++) {
 				particles.Add(Vec2.Rotate(Vec2.OrtX * GRandom.NextDouble(), GRandom.NextDouble(0, 2 * Math.PI)));
 				rots.Add(GRandom.NextDouble(0, 2 * Math.PI));

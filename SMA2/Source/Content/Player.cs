@@ -18,6 +18,7 @@ namespace VitPro.SMA2 {
 			Health = new Health(100);
 			Position = Vec2.Zero;
 			Size = 1;
+			Physics = Physics.SolidSphere(Size, 1);
 		}
 
 		public override void Update(double dt) {

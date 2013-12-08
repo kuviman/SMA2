@@ -9,7 +9,6 @@ namespace VitPro.SMA2 {
 			Health = new Health(1);
 			Position = pos;
 			Size = size;
-			Collideable = false;
 		}
 
 		const double GrowSpeed = 0.5;

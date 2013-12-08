@@ -23,6 +23,7 @@ namespace VitPro.SMA2 {
 			Size = minSize + (maxSize - minSize) * Math.Pow(GRandom.NextDouble(), 10);
 			Position += World.Current.player.Position;
 			Velocity += World.Current.player.Velocity / 2;
+			Physics = Physics.SolidSphere(Size, 1);
 		}
 
 		public override void Render() {

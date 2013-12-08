@@ -51,7 +51,7 @@
     <Compile Include="Source\Content\Cloud.cs" />
     <Compile Include="Source\Content\Bullet.cs" />
     <Compile Include="Source\Core\SpaceObject\Alive.cs" />
-    <Compile Include="Source\Core\SpaceObject\Collision.cs" />
+    <Compile Include="Source\Core\SpaceObject\Physics.cs" />
     <Compile Include="Source\Core\SpaceObject\Movement.cs" />
     <Compile Include="Source\Core\SpaceObject\Health.cs" />
     <Compile Include="Source\Content\LazerGun.cs" />

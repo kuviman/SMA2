@@ -92,14 +92,14 @@ namespace VitPro.SMA2 {
 					continue;
 				double d2 = maxSize;
 				foreach (var a in posGroup.Query(b.Position - new Vec2(d2, d2), b.Position + new Vec2(d2, d2))
-					.Where(o => o.Collideable)) {
+					.Where(o => o.Physics != null)) {
 						if (a is Player)
 							continue;
 						if ((a.Position - b.Position).SqrLength > GMath.Sqr(a.Size))
 							continue;
 					const double speedK = 0.05;
 					const double damage = 10;
-					a.Velocity += speedK * b.Velocity / a.Mass;
+					a.Velocity += speedK * b.Velocity / a.Physics.Mass;
 					a.Health.Value -= damage;
 					b.Health.Value -= 100500;
 					if (!a.Alive) {
@@ -110,11 +110,11 @@ namespace VitPro.SMA2 {
 			}
 
 			foreach (var a in objects) {
-				if (!a.Collideable)
+				if (a.Physics == null)
 					continue;
 				double d2 = a.Size + maxSize;
 				foreach (var b in posGroup.Query(a.Position - new Vec2(d2, d2), a.Position + new Vec2(d2, d2))) {
-					if (!b.Collideable)
+					if (b.Physics == null)
 						continue;
 					if (a == b)
 						continue;
@@ -131,15 +131,15 @@ namespace VitPro.SMA2 {
 					newObjects.Add(new Dust(a.Position + dr * a.Size, Math.Min(a.Size, b.Size) * (-dv) / K));
 
 					const double DamageK = 5;
-					double damage = 2 * (-dv) * DamageK / (a.Mass + b.Mass);
-					a.Health.Value -= damage * b.Mass;
-					b.Health.Value -= damage * a.Mass;
+					double damage = 2 * (-dv) * DamageK / (a.Physics.Mass + b.Physics.Mass);
+					a.Health.Value -= damage * b.Physics.Mass;
+					b.Health.Value -= damage * a.Physics.Mass;
 
 					b.Position += dr * pen / 2;
 					a.Position -= dr * pen / 2;
-					double E = 2 / (a.Mass + b.Mass);
-					b.Velocity -= E * a.Mass * dv * dr;
-					a.Velocity += E * b.Mass * dv * dr;
+					double E = 2 / (a.Physics.Mass + b.Physics.Mass);
+					b.Velocity -= E * a.Physics.Mass * dv * dr;
+					a.Velocity += E * b.Physics.Mass * dv * dr;
 				}
 			}
 			foreach (var item in newObjects)
@@ -205,7 +205,7 @@ namespace VitPro.SMA2 {
 			}
 
 			foreach (var o in new List<SpaceObject>(objects.Where(a => !a.Alive))) {
-				if (!o.Collideable)
+				if (o.Physics == null)
 					continue;
 				Add(new Explosion(o.Position, o.Size * 1.5));
 				if (player.Alive) {

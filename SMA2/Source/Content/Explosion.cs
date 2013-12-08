@@ -9,7 +9,6 @@ namespace VitPro.SMA2 {
 			Health = new Health(0.15);
 			Position = pos;
 			Size = size;
-			Collideable = false;
 		}
 
 		double swapT = 0;
