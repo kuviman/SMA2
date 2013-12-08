@@ -83,6 +83,7 @@
     <Content Include="Data\lazer.wav" />
     <Content Include="Data\Logo.png" />
     <Content Include="Data\machinegun.wav" />
+    <Content Include="Data\music.wav" />
     <Content Include="Data\Player.png" />
   </ItemGroup>
   <ItemGroup>

@@ -153,6 +153,7 @@ namespace VitPro.SMA2 {
 
 	class Program {
 		static void Main(string[] args) {
+			new Sound("../Data/music.wav").Play(volume: 0.3, looped: true);
 #if !DEBUG
 			App.Fullscreen = true;
 #endif
