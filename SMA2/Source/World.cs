@@ -50,6 +50,8 @@ namespace VitPro.SMA2 {
 
 		const int AsteroidsCap = 100;
 
+		static Sound expSound = new Sound("../Data/explosion.wav");
+
 		public void Update(double dt) {
 			objects.Refresh();
 			if (!player.Alive) {
@@ -206,6 +208,9 @@ namespace VitPro.SMA2 {
 				if (!o.Collideable)
 					continue;
 				Add(new Explosion(o.Position, o.Size * 1.5));
+				if (player.Alive) {
+					expSound.Play(1 - Math.Pow((o.Position - player.Position).Length / AsteroidDespawnDistance, 0.5));
+				}
 			}
 			foreach (var o in objects.Where(a =>
 				(!(a is Cloud) && (a.Position - player.Position).Length > AsteroidDespawnDistance) || !a.Alive))
