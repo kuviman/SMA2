@@ -21,8 +21,6 @@ namespace VitPro.SMA2 {
 
 		public World World { get; internal set; }
 
-		public Vec2 Position = Vec2.Zero;
-
 	}
 
 }
