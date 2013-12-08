@@ -97,7 +97,7 @@ namespace VitPro.SMA2 {
 							continue;
 						if ((a.Position - b.Position).SqrLength > GMath.Sqr(a.Size))
 							continue;
-					const double speedK = 0.01;
+					const double speedK = 0.05;
 					const double damage = 10;
 					a.Velocity += speedK * b.Velocity / a.Mass;
 					a.Health -= damage;
