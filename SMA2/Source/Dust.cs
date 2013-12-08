@@ -7,16 +7,16 @@ namespace VitPro.SMA2 {
 	class Dust : SpaceObject {
 
 		const double initk = 0.5;
-		public Dust(Vec2 pos, double size)
-			: base(0.2) {
-				Position = pos;
-				Size = size * initk;
-				GrowSpeed *= size;
-				Collideable = false;
-				for (int i = 0; i < 5; i++) {
-					particles.Add(Vec2.Rotate(Vec2.OrtX * GRandom.NextDouble(), GRandom.NextDouble(0, 2 * Math.PI)));
-					rots.Add(GRandom.NextDouble(0, 2 * Math.PI));
-				}
+		public Dust(Vec2 pos, double size) {
+			Health = MaxHealth = 0.2;
+			Position = pos;
+			Size = size * initk;
+			GrowSpeed *= size;
+			Collideable = false;
+			for (int i = 0; i < 5; i++) {
+				particles.Add(Vec2.Rotate(Vec2.OrtX * GRandom.NextDouble(), GRandom.NextDouble(0, 2 * Math.PI)));
+				rots.Add(GRandom.NextDouble(0, 2 * Math.PI));
+			}
 		}
 
 		double Rotation;

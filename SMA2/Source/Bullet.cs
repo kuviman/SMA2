@@ -9,7 +9,8 @@ namespace VitPro.SMA2 {
 		Vec2 p2;
 		const double Speed = 50;
 
-		public Bullet(Vec2 pos, Vec2 p2) : base(0.5) {
+		public Bullet(Vec2 pos, Vec2 p2) {
+			Health = MaxHealth = 0.5;
 			Position = pos;
 			this.p2 = p2;
 			Collideable = false;

@@ -5,11 +5,11 @@ namespace VitPro.SMA2 {
 
 	class Explosion : SpaceObject {
 
-		public Explosion(Vec2 pos, double size)
-			: base(0.15) {
-				Position = pos;
-				Size = size;
-				Collideable = false;
+		public Explosion(Vec2 pos, double size) {
+			Health = MaxHealth = 0.15;
+			Position = pos;
+			Size = size;
+			Collideable = false;
 		}
 
 		double swapT = 0;

@@ -15,6 +15,7 @@ namespace VitPro.SMA2 {
 		double t = 0;
 
 		public Player() {
+			Health = MaxHealth = 100;
 			Position = Vec2.Zero;
 			Size = 1;
 		}

@@ -5,11 +5,11 @@ namespace VitPro.SMA2 {
 
 	class ScoreEff : SpaceObject {
 
-		public ScoreEff(Vec2 pos, double size)
-			: base(1) {
-				Position = pos;
-				Size = size;
-				Collideable = false;
+		public ScoreEff(Vec2 pos, double size) {
+			Health = MaxHealth = 1;
+			Position = pos;
+			Size = size;
+			Collideable = false;
 		}
 
 		const double GrowSpeed = 0.5;

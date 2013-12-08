@@ -15,7 +15,8 @@ namespace VitPro.SMA2 {
 
 		const double minSize = 0.7, maxSize = 1.5;
 
-		public Asteroid() : base(50) {
+		public Asteroid() {
+			Health = MaxHealth = 50;
 			Position = Vec2.Rotate(Vec2.OrtX, GRandom.NextDouble(0, 2 * Math.PI)) * InitDistance;
 			const double spot = Math.PI / 6;
 			Velocity = Vec2.Rotate(Vec2.OrtX, Math.PI + Position.Arg + GRandom.NextDouble(-spot, spot)) * Speed;
